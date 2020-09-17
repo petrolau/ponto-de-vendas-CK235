@@ -9,13 +9,18 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
+import java.io.InputStream;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
+
+import util.ResourceFinder;
+
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 public class Login {
 
@@ -27,6 +32,8 @@ public class Login {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		  GraphicsEnvironment grEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		  grEnv.registerFont(ResourceFinder.getFiraCodeFont());
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -77,6 +84,7 @@ public class Login {
 		JButton LogarButton = new JButton("Logar");
 		LogarButton.setBackground(new Color(102, 206, 214));
 		LogarButton.setBounds(113, 251, 120, 33);
+		LogarButton.setFont(new Font("Fira Code", Font.PLAIN, 15));
 		panel_1.add(LogarButton);
 		
 		passwordField = new JPasswordField();
@@ -85,18 +93,18 @@ public class Login {
 		panel_1.add(passwordField);
 		
 		JLabel LoginLabel = new JLabel("Login");
-		LoginLabel.setFont(new Font("Dialog", Font.BOLD, 15));
+		LoginLabel.setFont(new Font("Fira Code", Font.BOLD, 15));
 		LoginLabel.setBounds(60, 81, 55, 16);
 		panel_1.add(LoginLabel);
 		
 		JLabel SenhaLabel = new JLabel("Senha");
-		SenhaLabel.setFont(new Font("Dialog", Font.BOLD, 15));
+		SenhaLabel.setFont(new Font("Fira Code", Font.BOLD, 15));
 		SenhaLabel.setBounds(61, 144, 55, 16);
 		panel_1.add(SenhaLabel);
 		
-		JLabel LivrariaNome = new JLabel("Livraria Papiro");
-		LivrariaNome.setFont(new Font("Dialog", Font.BOLD, 24));
-		LivrariaNome.setBounds(77, 50, 181, 28);
+		JLabel LivrariaNome = new JLabel("LIVRARIA PAPIRO");
+		LivrariaNome.setFont(new Font("Fira Code", Font.PLAIN, 24));
+		LivrariaNome.setBounds(77, 50, 327, 28);
 		frmLogin.getContentPane().add(LivrariaNome);
 		frmLogin.setBackground(Color.WHITE);
 		frmLogin.setBounds(100, 100, 768, 633);
