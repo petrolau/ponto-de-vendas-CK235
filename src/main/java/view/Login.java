@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
 import java.io.InputStream;
@@ -69,6 +70,11 @@ public class Login {
 		panel.setBackground(new Color(102, 206, 214));
 		panel.setBounds(0, 145, 428, 342);
 		frmLogin.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel imgBook = new JLabel(new ImageIcon(ResourceFinder.getScaledBookImage(350)));
+		imgBook.setBounds(0, 0, 428, 342);
+		panel.add(imgBook);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(243,243,243));
@@ -104,8 +110,12 @@ public class Login {
 		
 		JLabel LivrariaNome = new JLabel("LIVRARIA PAPIRO");
 		LivrariaNome.setFont(new Font("Fira Code", Font.PLAIN, 24));
-		LivrariaNome.setBounds(77, 50, 327, 28);
+		LivrariaNome.setBounds(77, 37, 327, 28);
 		frmLogin.getContentPane().add(LivrariaNome);
+		
+		JLabel lblNewLabel = new JLabel(new ImageIcon(ResourceFinder.getScaledBookImage(32)));
+		lblNewLabel.setBounds(34, 37, 44, 32);
+		frmLogin.getContentPane().add(lblNewLabel);
 		frmLogin.setBackground(Color.WHITE);
 		frmLogin.setBounds(100, 100, 768, 633);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
