@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import util.ResourceFinder;
 
@@ -35,6 +36,11 @@ public class Login {
 	public static void main(String[] args) {
 		  GraphicsEnvironment grEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		  grEnv.registerFont(ResourceFinder.getFiraCodeFont());
+		    try { 
+		        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
+		    } catch(Exception e){
+		    	System.err.println(e);
+		    }
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
