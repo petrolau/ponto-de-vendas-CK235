@@ -116,7 +116,7 @@ public class Login {
 		
 		JLabel LivrariaNome = new JLabel("LIVRARIA PAPIRO");
 		LivrariaNome.setFont(new Font("Fira Code", Font.PLAIN, 24));
-		LivrariaNome.setBounds(77, 37, 327, 28);
+		LivrariaNome.setBounds(66, 30, 327, 28);
 		frmLogin.getContentPane().add(LivrariaNome);
 		
 		JLabel lblNewLabel = new JLabel(new ImageIcon(ResourceFinder.getScaledBookImage(32)));
