@@ -4,15 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import java.awt.SystemColor;
-import java.io.InputStream;
-import java.awt.CardLayout;
-import java.awt.GridLayout;
+
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
