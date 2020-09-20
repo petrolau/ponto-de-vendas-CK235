@@ -42,55 +42,6 @@ public class Consulta_estoque_admin extends JPanel {
 		comboBox.setBounds(10, 74, 206, 38);
 		add(comboBox);
 		
-		table = new JTable();
-		table.setBackground(Color.WHITE);
-		table.setForeground(new Color(129, 129, 129));
-
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Livro", "Um  Livro sobre Amor e amizade", "300", "R$ 240"},
-				{"Livro", "Um livro sobre amizade e amor", "10", "R$ 120"},
-			},
-			new String[] {
-				"Produtos", "Descricao", "Quantidade", "Pre\u00E7o"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, Object.class, Object.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(185);
-		table.getColumnModel().getColumn(0).setMinWidth(185);
-		table.getColumnModel().getColumn(0).setMaxWidth(185);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(185);
-		table.getColumnModel().getColumn(1).setMinWidth(185);
-		table.getColumnModel().getColumn(1).setMaxWidth(185);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(2).setPreferredWidth(185);
-		table.getColumnModel().getColumn(2).setMinWidth(185);
-		table.getColumnModel().getColumn(2).setMaxWidth(185);
-		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(3).setPreferredWidth(185);
-		table.getColumnModel().getColumn(3).setMinWidth(185);
-		table.getColumnModel().getColumn(3).setMaxWidth(185);
-		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table.setBounds(10, 187, 740, 328);
-		table.setFont(new Font("Fira Code",Font.PLAIN,13));
-		add(table);
-		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(102, 206, 214));
