@@ -43,7 +43,9 @@ public class TestePanels {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 768, 580);
-		frame.add(new PanelVendas());
+		//frame.add(new PanelVendas());
+		//frame.add(new PanelConsultaVendasVendedor());
+		frame.add(new PanelConsultaVendasAdmin());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
