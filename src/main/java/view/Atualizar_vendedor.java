@@ -30,7 +30,7 @@ public class Atualizar_vendedor extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblAdicionarProduto = new JLabel("ADICIONAR PRODUTO");
+		JLabel lblAdicionarProduto = new JLabel("ATUALIZAR VENDEDOR");
 		lblAdicionarProduto.setForeground(Color.WHITE);
 		lblAdicionarProduto.setBounds(161, 19, 308, 15);
 		lblAdicionarProduto.setFont(new Font("Fira Code", Font.PLAIN, 20));
