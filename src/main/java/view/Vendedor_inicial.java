@@ -37,7 +37,7 @@ public class Vendedor_inicial extends JPanel {
 		
 		JPanel PainelInterno = new JPanel();
 		PainelInterno.setBackground(new Color(237,237,237));
-		PainelInterno.setBounds(20, 65, 524, 428);
+		PainelInterno.setBounds(20, 87, 524, 428);
 		PainelInfo.add(PainelInterno);
 		PainelInterno.setLayout(null);
 		
