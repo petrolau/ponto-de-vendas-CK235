@@ -32,12 +32,12 @@ public class Vendedor_inicial extends JPanel {
 		JLabel InformacoesLabel = new JLabel("Informa\u00E7\u00F5es");
 		InformacoesLabel.setFont(new Font("Fira Code", Font.PLAIN, 24));
 		InformacoesLabel.setForeground(new Color(51,51,51));
-		InformacoesLabel.setBounds(10, 23, 182, 30);
+		InformacoesLabel.setBounds(20, 23, 182, 30);
 		PainelInfo.add(InformacoesLabel);
 		
 		JPanel PainelInterno = new JPanel();
 		PainelInterno.setBackground(new Color(237,237,237));
-		PainelInterno.setBounds(20, 75, 524, 428);
+		PainelInterno.setBounds(20, 65, 524, 428);
 		PainelInfo.add(PainelInterno);
 		PainelInterno.setLayout(null);
 		
@@ -71,9 +71,9 @@ public class Vendedor_inicial extends JPanel {
 		
 		JLabel TipoUsuario = new JLabel("VENDEDOR");
 		TipoUsuario.setFont(new Font("Fira Code", Font.BOLD, 20));
-		TipoUsuario.setForeground(new Color(255,255,255));
+		TipoUsuario.setForeground(Color.DARK_GRAY);
 		TipoUsuario.setEnabled(true);
-		TipoUsuario.setBounds(56, 22, 146, 26);
+		TipoUsuario.setBounds(50, 25, 146, 26);
 		panelButtons.add(TipoUsuario);
 		
 		JButton btnConVendas = new JButton("VENDER");
@@ -89,7 +89,7 @@ public class Vendedor_inicial extends JPanel {
 		JButton btConEstoque = new JButton("CONSULTAR ESTOQUE");
 		btConEstoque.setBackground(Color.WHITE);
 		btConEstoque.setFont(new Font("Fira Code", Font.PLAIN, 10));
-		btConEstoque.setBounds(34, 183, 146, 52);
+		btConEstoque.setBounds(38, 181, 142, 52);
 		panelButtons.add(btConEstoque);
 		
 		JButton btSair = new JButton("SAIR");
