@@ -37,30 +37,30 @@ public class Vendedor_inicial extends JPanel {
 		
 		JPanel PainelInterno = new JPanel();
 		PainelInterno.setBackground(new Color(237,237,237));
-		PainelInterno.setBounds(10, 74, 524, 428);
+		PainelInterno.setBounds(20, 75, 524, 428);
 		PainelInfo.add(PainelInterno);
 		PainelInterno.setLayout(null);
 		
 		Nome = new JTextField();
-		Nome.setBounds(200, 106, 271, 27);
+		Nome.setBounds(178, 128, 271, 27);
 		PainelInterno.add(Nome);
 		Nome.setColumns(10);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(200, 164, 271, 27);
+		textField.setBounds(178, 202, 271, 27);
 		PainelInterno.add(textField);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Fira Code", Font.PLAIN, 18));
 		lblNome.setForeground(new Color(129,129,129));
-		lblNome.setBounds(133, 112, 55, 16);
+		lblNome.setBounds(105, 131, 55, 16);
 		PainelInterno.add(lblNome);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setFont(new Font("Fira Code", Font.PLAIN, 18));
 		lblCpf.setForeground(new Color(129,129,129));
-		lblCpf.setBounds(133, 167, 55, 16);
+		lblCpf.setBounds(105, 205, 55, 16);
 		
 		PainelInterno.add(lblCpf);
 		JPanel panelButtons = new JPanel();
