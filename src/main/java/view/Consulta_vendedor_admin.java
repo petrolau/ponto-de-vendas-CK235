@@ -17,10 +17,12 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.TitledBorder;
 
 public class Consulta_vendedor_admin extends JPanel {
 	private JTextField txtNome;
-	private JTextField txtCof;
+	private JTextField txtCpf;
 	private JTextField txtSenha;
 
 	/**
@@ -53,7 +55,7 @@ public class Consulta_vendedor_admin extends JPanel {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(0, 191, 255));
-		btnVoltar.setBounds(337, 546, 90, 28);
+		btnVoltar.setBounds(73, 510, 104, 28);
 		add(btnVoltar);
 		
 		JPanel panel = new JPanel();
@@ -115,23 +117,45 @@ public class Consulta_vendedor_admin extends JPanel {
 		txtNome = new JTextField();
 		txtNome.setForeground(Color.DARK_GRAY);
 		txtNome.setText("nome");
-		txtNome.setBounds(428, 318, 206, 27);
+		txtNome.setBounds(428, 318, 206, 38);
 	
-		txtNome.setBorder(new LineBorder(new Color(0, 191, 255), 30, true));
+		txtNome.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(txtNome);
 		txtNome.setColumns(10);
 		
-		txtCof = new JTextField();
-		txtCof.setText("CPF");
-		txtCof.setColumns(10);
-		txtCof.setBounds(428, 357, 206, 27);
-		add(txtCof);
+		txtCpf = new JTextField();
+		txtCpf.setText("CPF");
+		txtCpf.setForeground(Color.DARK_GRAY);
+		txtCpf.setColumns(10);
+		txtCpf.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		txtCpf.setBounds(428, 369, 206, 38);
+		add(txtCpf);
 		
 		txtSenha = new JTextField();
 		txtSenha.setText("Senha");
+		txtSenha.setForeground(Color.DARK_GRAY);
 		txtSenha.setColumns(10);
-		txtSenha.setBounds(428, 393, 206, 27);
+		txtSenha.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		txtSenha.setBounds(428, 419, 206, 38);
 		add(txtSenha);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(128, 128, 128)));
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(20, 175, 347, 319);
+		add(panel_1);
+		
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.setForeground(Color.WHITE);
+		btnAtualizar.setBackground(new Color(0, 191, 255));
+		btnAtualizar.setBounds(208, 510, 104, 28);
+		add(btnAtualizar);
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setBackground(new Color(0, 191, 255));
+		btnCadastrar.setBounds(482, 466, 104, 28);
+		add(btnCadastrar);
 	}
 	private Color Color(int i, int j, int k) {
 		// TODO Auto-generated method stub
