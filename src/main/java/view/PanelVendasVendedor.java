@@ -17,14 +17,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class VendaVendedor extends JPanel {
+public class PanelVendasVendedor extends JPanel {
 	private JTable table;
 	private JTextField textFieldInputTotal;
 	private JTextField textFieldQuantidade;
 	/**
 	 * Create the panel.
 	 */
-	public VendaVendedor() {
+	public PanelVendasVendedor() {
 		setBackground(Color.WHITE);
 		this.setBounds(0, 0, 768, 580);
 		setLayout(null);
@@ -76,7 +76,7 @@ public class VendaVendedor extends JPanel {
 		lblQuantidade.setFont(new Font("Fira Code",Font.PLAIN,18));
 		panel.add(lblQuantidade);
 		
-		JLabel lblPreco= new JLabel("Preço");
+		JLabel lblPreco= new JLabel("Preï¿½o");
 		lblPreco.setBounds(294, 13, 58, 24);
 		lblPreco.setForeground(Color.WHITE);
 		lblPreco.setFont(new Font("Fira Code",Font.PLAIN,18));

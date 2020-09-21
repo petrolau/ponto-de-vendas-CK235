@@ -8,14 +8,14 @@ import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class PanelVendas extends JPanel {
+public class PanelTelaAdmin extends JPanel {
 	private JTextField Nome;
 	private JTextField textField;
 
 	/**
 	 * Create the panel.
 	 */
-	public PanelVendas() {
+	public PanelTelaAdmin() {
 		setBackground(new Color(0, 0, 0));
 		setLayout(null);
 		this.setBounds(0, 0, 768, 580);
@@ -29,7 +29,7 @@ public class PanelVendas extends JPanel {
 		JLabel InformacoesLabel = new JLabel("Informa\u00E7\u00F5es");
 		InformacoesLabel.setFont(new Font("Fira Code", Font.PLAIN, 24));
 		InformacoesLabel.setForeground(new Color(51,51,51));
-		InformacoesLabel.setBounds(10, 23, 133, 29);
+		InformacoesLabel.setBounds(10, 23, 292, 29);
 		PainelInfo.add(InformacoesLabel);
 		
 		JPanel PainelInterno = new JPanel();
@@ -51,7 +51,7 @@ public class PanelVendas extends JPanel {
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Fira Code", Font.PLAIN, 18));
 		lblNome.setForeground(new Color(129,129,129));
-		lblNome.setBounds(133, 112, 55, 16);
+		lblNome.setBounds(107, 112, 81, 16);
 		PainelInterno.add(lblNome);
 		
 		JLabel lblCpf = new JLabel("CPF:");
@@ -70,7 +70,7 @@ public class PanelVendas extends JPanel {
 		TipoUsuario.setFont(new Font("Fira Code", Font.BOLD, 20));
 		TipoUsuario.setForeground(new Color(255,255,255));
 		TipoUsuario.setEnabled(true);
-		TipoUsuario.setBounds(34, 22, 146, 26);
+		TipoUsuario.setBounds(12, 22, 196, 26);
 		panelButtons.add(TipoUsuario);
 		
 		JButton btnConVendas = new JButton("CONSULTAR VENDAS");

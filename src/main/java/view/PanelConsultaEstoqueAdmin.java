@@ -14,13 +14,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class Consulta_estoque_admin extends JPanel {
+public class PanelConsultaEstoqueAdmin extends JPanel {
 	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
-	public Consulta_estoque_admin() {
+	public PanelConsultaEstoqueAdmin() {
 		setBackground(Color.WHITE);
 		this.setBounds(0, 0, 768, 580);
 		setLayout(null);

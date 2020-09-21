@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
 
-public class Consulta_vendedor_admin extends JPanel {
+public class PanelConsultaVendedorAdmin extends JPanel {
 	private JTextField txtNome;
 	private JTextField txtCpf;
 	private JTextField txtSenha;
@@ -28,7 +28,7 @@ public class Consulta_vendedor_admin extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Consulta_vendedor_admin() {
+	public PanelConsultaVendedorAdmin() {
 		setBackground(Color.WHITE);
 		this.setBounds(0, 0, 768, 580);
 		setLayout(null);

@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Vendedor_inicial extends JPanel {
+public class PanelTelaVendedor extends JPanel {
 	
 	private JTextField Nome;
 	private JTextField textField;
@@ -18,7 +18,7 @@ public class Vendedor_inicial extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Vendedor_inicial() {
+	public PanelTelaVendedor() {
 		setBackground(new Color(0, 0, 0));
 		setLayout(null);
 		this.setBounds(0, 0, 768, 580);

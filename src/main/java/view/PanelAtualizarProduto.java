@@ -11,14 +11,14 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Atualizar_produto extends JPanel {
+public class PanelAtualizarProduto extends JPanel {
 	private JTextField textField;
 	private JTextField textField_2;
 
 	/**
 	 * Create the panel.
 	 */
-	public Atualizar_produto() {
+	public PanelAtualizarProduto() {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
