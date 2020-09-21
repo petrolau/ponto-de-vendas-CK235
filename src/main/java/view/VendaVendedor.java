@@ -36,7 +36,7 @@ public class VendaVendedor extends JPanel {
 		add(lblVender);
 		
 		JLabel lblFiltrarPor = new JLabel("Adicionar produto a venda:");
-		lblFiltrarPor.setBounds(418, 178, 164, 14);
+		lblFiltrarPor.setBounds(418, 176, 164, 14);
 		lblFiltrarPor.setForeground(new Color(134, 134, 134));
 		lblFiltrarPor.setFont(new Font("Fira Code",Font.PLAIN,13));
 		add(lblFiltrarPor);
@@ -52,32 +52,32 @@ public class VendaVendedor extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnVoltar.setBackground(new Color(102, 206, 214));
+		btnVoltar.setBackground(new Color(0, 191, 255));
 		btnVoltar.setBounds(157, 512, 90, 28);
 		add(btnVoltar);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.BLACK);
-		panel.setBackground(Color.WHITE);
-		panel.setBorder(new LineBorder(new Color(0, 255, 255), 30, true));
-		panel.setBounds(3, 49, 396, 50);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBorder(new LineBorder(new Color(0, 191, 255), 30, true));
+		panel.setBounds(3, 51, 396, 50);
 		add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblProduto = new JLabel("Produto");
-		lblProduto.setBounds(32, 21, 102, 16);
+		lblProduto.setBounds(32, 13, 102, 24);
 		lblProduto.setFont(new Font("Fira Code",Font.PLAIN,18));
 		lblProduto.setForeground(Color.WHITE);
 		panel.add(lblProduto);
 		
 		JLabel lblQuantidade = new JLabel("Quantidade");
-		lblQuantidade.setBounds(144, 21, 102, 16);
+		lblQuantidade.setBounds(146, 13, 102, 24);
 		lblQuantidade.setForeground(Color.WHITE);
 		lblQuantidade.setFont(new Font("Fira Code",Font.PLAIN,18));
 		panel.add(lblQuantidade);
 		
 		JLabel lblPreco= new JLabel("Preço");
-		lblPreco.setBounds(294, 21, 58, 16);
+		lblPreco.setBounds(294, 13, 58, 24);
 		lblPreco.setForeground(Color.WHITE);
 		lblPreco.setFont(new Font("Fira Code",Font.PLAIN,18));
 		panel.add(lblPreco);
@@ -96,7 +96,7 @@ public class VendaVendedor extends JPanel {
 		table.setShowGrid(false);
 		table.setShowHorizontalLines(false);
 		table.setShowVerticalLines(false);
-		table.setBounds(3, 97, 396, 385);
+		table.setBounds(3, 101, 396, 381);
 		add(table);
 		
 		JButton btnMenos = new JButton("-");
@@ -105,13 +105,13 @@ public class VendaVendedor extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnMenos.setBackground(new Color(102, 206, 214));
+		btnMenos.setBackground(new Color(0, 191, 255));
 		btnMenos.setBounds(634, 208, 45, 28);
 		add(btnMenos);
 		
 		JButton btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.setForeground(Color.WHITE);
-		btnFinalizar.setBackground(new Color(102, 206, 214));
+		btnFinalizar.setBackground(new Color(0, 191, 255));
 		btnFinalizar.setBounds(610, 512, 90, 28);
 		add(btnFinalizar);
 		
@@ -122,6 +122,7 @@ public class VendaVendedor extends JPanel {
 		add(lblTotal);
 		
 		textFieldInputTotal = new JTextField();
+		textFieldInputTotal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 206, 209)));
 		textFieldInputTotal.setBackground(Color.WHITE);
 		textFieldInputTotal.setBounds(610, 475, 90, 20);
 		add(textFieldInputTotal);
@@ -129,7 +130,7 @@ public class VendaVendedor extends JPanel {
 		
 		JButton btnAdicionar_1 = new JButton("Adicionar");
 		btnAdicionar_1.setForeground(Color.WHITE);
-		btnAdicionar_1.setBackground(new Color(102, 206, 214));
+		btnAdicionar_1.setBackground(new Color(0, 191, 255));
 		btnAdicionar_1.setBounds(418, 252, 90, 28);
 		add(btnAdicionar_1);
 		
@@ -139,11 +140,13 @@ public class VendaVendedor extends JPanel {
 			}
 		});
 		btnMais.setForeground(Color.WHITE);
-		btnMais.setBackground(new Color(102, 206, 214));
+		btnMais.setBackground(new Color(0, 191, 255));
 		btnMais.setBounds(713, 208, 45, 28);
 		add(btnMais);
 		
 		textFieldQuantidade = new JTextField();
+		textFieldQuantidade.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 206, 209)));
+		textFieldQuantidade.setForeground(new Color(0, 0, 0));
 		textFieldQuantidade.setBounds(681, 212, 29, 20);
 		add(textFieldQuantidade);
 		textFieldQuantidade.setColumns(10);
