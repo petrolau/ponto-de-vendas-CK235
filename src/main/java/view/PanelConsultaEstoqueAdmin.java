@@ -32,14 +32,14 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		add(lblEstoque);
 		
 		JLabel lblFiltrarPor = new JLabel("Filtrar por:");
-		lblFiltrarPor.setBounds(10, 54, 99, 14);
+		lblFiltrarPor.setBounds(10, 47, 99, 14);
 		lblFiltrarPor.setForeground(new Color(134, 134, 134));
 		lblFiltrarPor.setFont(new Font("Fira Code",Font.PLAIN,13));
 		add(lblFiltrarPor);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(10, 74, 206, 38);
+		comboBox.setBounds(10, 67, 206, 38);
 		add(comboBox);
 		
 		JButton btnVoltar = new JButton("Voltar");
@@ -51,7 +51,7 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(102, 206, 214));
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
-		panel.setBounds(10, 124, 740, 56);
+		panel.setBounds(10, 111, 740, 56);
 		add(panel);
 		panel.setLayout(null);
 		
@@ -67,7 +67,7 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		lblQuantidade.setFont(new Font("Fira Code",Font.PLAIN,18));
 		panel.add(lblQuantidade);
 		
-		JLabel lblPreco= new JLabel("Pre�o");
+		JLabel lblPreco= new JLabel("Preço");
 		lblPreco.setBounds(584, 21, 129, 16);
 		lblPreco.setForeground(Color.WHITE);
 		lblPreco.setFont(new Font("Fira Code",Font.PLAIN,18));

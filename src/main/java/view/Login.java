@@ -115,7 +115,7 @@ public class Login {
 		frmLogin.getContentPane().add(LivrariaNome);
 		
 		JLabel lblNewLabel = new JLabel(new ImageIcon(ResourceFinder.getScaledBookImage(32)));
-		lblNewLabel.setBounds(34, 37, 44, 32);
+		lblNewLabel.setBounds(21, 26, 44, 32);
 		frmLogin.getContentPane().add(lblNewLabel);
 		frmLogin.setBackground(Color.WHITE);
 		frmLogin.setBounds(100, 100, 768, 633);

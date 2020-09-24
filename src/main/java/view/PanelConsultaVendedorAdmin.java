@@ -62,7 +62,7 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		panel.setForeground(new Color(0, 191, 255));
 		panel.setBackground(Color.WHITE);
 		panel.setBorder(new LineBorder(new Color(0, 191, 255), 30, true));
-		panel.setBounds(10, 124, 364, 56);
+		panel.setBounds(20, 124, 347, 56);
 		add(panel);
 		panel.setLayout(null);
 		
