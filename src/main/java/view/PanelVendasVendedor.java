@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
@@ -76,7 +77,7 @@ public class PanelVendasVendedor extends JPanel {
 		lblQuantidade.setFont(new Font("Fira Code",Font.PLAIN,18));
 		panel.add(lblQuantidade);
 		
-		JLabel lblPreco= new JLabel("Pre�o");
+		JLabel lblPreco= new JLabel("Preço");
 		lblPreco.setBounds(294, 13, 58, 24);
 		lblPreco.setForeground(Color.WHITE);
 		lblPreco.setFont(new Font("Fira Code",Font.PLAIN,18));

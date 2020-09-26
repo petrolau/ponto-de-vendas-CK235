@@ -90,8 +90,9 @@ public class PanelConsultaVendasVendedor extends JPanel {
 		table.getColumnModel().getColumn(3).setMinWidth(185);
 		table.getColumnModel().getColumn(3).setMaxWidth(185);
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		
 		table.setBounds(10, 187, 740, 328);
+		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		table.setFont(new Font("Fira Code",Font.PLAIN,13));
 		add(table);
 		
@@ -113,7 +114,7 @@ public class PanelConsultaVendasVendedor extends JPanel {
 		lblProduto.setForeground(Color.WHITE);
 		panel.add(lblProduto);
 		
-		JLabel lblDesc = new JLabel("Descrição");
+		JLabel lblDesc = new JLabel("DescriÃ§Ã£o");
 		lblDesc.setBounds(200, 21, 146, 16);
 		lblDesc.setForeground(Color.WHITE);
 		lblDesc.setFont(new Font("Fira Code",Font.PLAIN,18));
@@ -125,7 +126,7 @@ public class PanelConsultaVendasVendedor extends JPanel {
 		lblQuantidade.setFont(new Font("Fira Code",Font.PLAIN,18));
 		panel.add(lblQuantidade);
 		
-		JLabel lblPreco= new JLabel("Preço");
+		JLabel lblPreco= new JLabel("PreÃ§o");
 		lblPreco.setBounds(591, 21, 129, 16);
 		lblPreco.setForeground(Color.WHITE);
 		lblPreco.setFont(new Font("Fira Code",Font.PLAIN,18));

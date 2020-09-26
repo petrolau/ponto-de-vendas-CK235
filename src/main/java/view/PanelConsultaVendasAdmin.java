@@ -91,6 +91,7 @@ public class PanelConsultaVendasAdmin extends JPanel {
 		add(table);
 		
 		JButton btnNewButton = new JButton("Voltar");
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(102, 206, 214));
 		btnNewButton.setBounds(126, 541, 90, 28);
 		add(btnNewButton);
@@ -133,6 +134,7 @@ public class PanelConsultaVendasAdmin extends JPanel {
 		add(comboBox_1);
 		
 		JButton btnRelatrio = new JButton("Relat\u00F3rio");
+		btnRelatrio.setForeground(Color.WHITE);
 		btnRelatrio.setBackground(new Color(102, 206, 214));
 		btnRelatrio.setBounds(570, 541, 90, 28);
 		add(btnRelatrio);

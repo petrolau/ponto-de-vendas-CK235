@@ -22,6 +22,7 @@ public class PanelAtualizarVendedor extends JPanel {
 	 */
 	public PanelAtualizarVendedor() {
 		setBackground(Color.WHITE);
+		setBounds(0,0,551,365);
 		setLayout(null);
 		
 		JPanel panel = new JPanel();

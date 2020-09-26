@@ -62,51 +62,16 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		panel.setForeground(new Color(0, 191, 255));
 		panel.setBackground(Color.WHITE);
 		panel.setBorder(new LineBorder(new Color(0, 191, 255), 30, true));
-		panel.setBounds(10, 124, 364, 56);
+		panel.setBounds(20, 124, 347, 56);
 		add(panel);
 		panel.setLayout(null);
 		
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"CINTHIA, LAURA, Dani"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setToolTipText("CINTHIA");
-		list.setEnabled(false);
-		list.setBounds(0, 55, 364, 209);
-		panel.add(list);
-		
+
 		JLabel lblVendedores = new JLabel("VENDEDORES");
 		lblVendedores.setBounds(109, 15, 156, 28);
 		panel.add(lblVendedores);
 		lblVendedores.setFont(new Font("Fira Code",Font.PLAIN,20));
 		lblVendedores.setForeground(Color.WHITE);
-		
-		table = new JTable();
-		table.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"livro", "30", "52"},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				true, true, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.setBounds(10, 180, 740, 328);
-		add(table);
 		
 		JLabel lblAdicionarVendedor = new JLabel("Adicionar vendedor:");
 		lblAdicionarVendedor.setForeground(new Color(134, 134, 134));
@@ -142,7 +107,22 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(128, 128, 128)));
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(20, 175, 347, 319);
+		panel_1.setBounds(20, 180, 347, 314);
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"CINTHIA, LAURA, Dani"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setToolTipText("CINTHIA");
+		list.setEnabled(false);
+		list.setBounds(29, 55, 335, 209);
+		panel_1.add(list);
+		
 		add(panel_1);
 		
 		JButton btnAtualizar = new JButton("Atualizar");

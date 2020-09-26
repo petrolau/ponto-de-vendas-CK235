@@ -51,7 +51,7 @@ public class PanelTelaAdmin extends JPanel {
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Fira Code", Font.PLAIN, 18));
 		lblNome.setForeground(new Color(129,129,129));
-		lblNome.setBounds(107, 112, 81, 16);
+		lblNome.setBounds(133, 110, 55, 16);
 		PainelInterno.add(lblNome);
 		
 		JLabel lblCpf = new JLabel("CPF:");
