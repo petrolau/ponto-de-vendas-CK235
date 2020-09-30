@@ -43,7 +43,7 @@ public class PanelAtualizarProduto extends JPanel {
 		
 		JLabel lblQuantidade = new JLabel("QUANTIDADE:");
 		lblQuantidade.setForeground(Color.DARK_GRAY);
-		lblQuantidade.setBounds(28, 216, 93, 14);
+		lblQuantidade.setBounds(27, 205, 93, 14);
 		lblQuantidade.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(lblQuantidade);
 		
@@ -69,7 +69,7 @@ public class PanelAtualizarProduto extends JPanel {
 		add(comboBox);
 		
 		textField = new JTextField();
-		textField.setBounds(28, 242, 193, 26);
+		textField.setBounds(28, 236, 193, 26);
 		add(textField);
 		textField.setColumns(10);
 		
