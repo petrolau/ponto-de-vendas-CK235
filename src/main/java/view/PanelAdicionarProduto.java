@@ -15,6 +15,7 @@ public class PanelAdicionarProduto extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Create the panel.
@@ -70,10 +71,6 @@ public class PanelAdicionarProduto extends JPanel {
 		btnNewButton.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(btnNewButton);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(24, 124, 197, 26);
-		add(comboBox);
-		
 		textField = new JTextField();
 		textField.setBounds(28, 242, 193, 26);
 		add(textField);
@@ -88,6 +85,11 @@ public class PanelAdicionarProduto extends JPanel {
 		textField_2.setBounds(325, 124, 187, 26);
 		add(textField_2);
 		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(28, 124, 193, 26);
+		add(textField_3);
 		
 
 	}
