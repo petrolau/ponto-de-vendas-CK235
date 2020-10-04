@@ -7,10 +7,15 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(nullable=false)
 	private String Descricao;
+	@Column(nullable=false)
 	private String nomeProduto;
+	@Column(nullable=false)
 	private String tipo;
+	@Column(nullable=false)
 	private Double preco;	
+	@Column(nullable=false)
 	private Integer qtEmEstoque;
 	public Integer getId() {
 	
@@ -48,6 +53,11 @@ public class Produto {
 	}
 	public void setQtEmEstoque(Integer qtEmEstoque) {
 		this.qtEmEstoque = qtEmEstoque;
+	}
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", Descricao=" + Descricao + ", nomeProduto=" + nomeProduto + ", tipo=" + tipo
+				+ ", preco=" + preco + ", qtEmEstoque=" + qtEmEstoque + "]";
 	}
 
 

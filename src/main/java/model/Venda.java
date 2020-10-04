@@ -9,10 +9,17 @@ public class Venda {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@OneToOne
+	
 	private Usuario user;
+	@Column(nullable=false)
 	private Date dataVenda;
 	@OneToOne
 	private Produto vendido;
+	@Override
+	public String toString() {
+		return "Venda [id=" + id + ", user=" + user + ", dataVenda=" + dataVenda + ", vendido=" + vendido
+				+ ", qtVendido=" + qtVendido + "]";
+	}
 	private Integer qtVendido;
 	
 	public Integer getId() {

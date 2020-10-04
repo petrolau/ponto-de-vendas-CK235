@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import controller.UsuarioController;
 import util.ResourceFinder;
 
 import javax.swing.JButton;
@@ -18,6 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login {
 
@@ -31,6 +34,7 @@ public class Login {
 	public static void main(String[] args) {
 		  GraphicsEnvironment grEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		  grEnv.registerFont(ResourceFinder.getFiraCodeFont());
+		  UsuarioController.getInstance().cadastraAdmin();
 		    try { 
 		        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
 		    } catch(Exception e){
@@ -90,6 +94,15 @@ public class Login {
 		loginField.setColumns(10);
 		
 		JButton LogarButton = new JButton("Logar");
+		LogarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String login=loginField.getText();
+				char[] password=passwordField.getPassword();
+				String pw=String.valueOf(password);
+				UsuarioController.getInstance().logar(login,pw);
+				
+			}
+		});
 		LogarButton.setBackground(new Color(102, 206, 214));
 		LogarButton.setBounds(113, 251, 120, 33);
 		LogarButton.setFont(new Font("Fira Code", Font.PLAIN, 15));

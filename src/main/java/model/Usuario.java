@@ -7,10 +7,13 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(nullable=false)
 	private String nome;
+	@Column(unique=true,nullable=false)
 	private String login;
+	@Column(nullable=false)
 	private String senha;
-	
+	@Column(nullable=false)
 	private Tipo tipo;
 	public Integer getId() {
 		return id;
@@ -41,6 +44,11 @@ public class Usuario {
 	}
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
+	}
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", tipo=" + tipo
+				+ "]";
 	}
 
 }
