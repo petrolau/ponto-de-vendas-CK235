@@ -2,11 +2,16 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.*;
+@Entity
 public class Venda {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@OneToOne
 	private Usuario user;
 	private Date dataVenda;
+	@OneToOne
 	private Produto vendido;
 	private Integer qtVendido;
 	

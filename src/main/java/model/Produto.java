@@ -1,6 +1,11 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
 public class Produto {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String Descricao;
 	private String nomeProduto;
@@ -37,6 +42,12 @@ public class Produto {
 	}
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+	public Integer getQtEmEstoque() {
+		return qtEmEstoque;
+	}
+	public void setQtEmEstoque(Integer qtEmEstoque) {
+		this.qtEmEstoque = qtEmEstoque;
 	}
 
 

@@ -1,11 +1,17 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
 public class Usuario {
-	Integer id;
-	String nome;
-	String login;
-	String senha;
-	Tipo tipo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String nome;
+	private String login;
+	private String senha;
+	
+	private Tipo tipo;
 	public Integer getId() {
 		return id;
 	}
