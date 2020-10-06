@@ -15,9 +15,9 @@ public class TesteController {
 	System.out.println(UsuarioController.getInstance().logar("Admin", "admin"));
 	System.out.println(UsuarioController.getInstance().getLoggedUser());
 	Usuario u=new Usuario();
-	u.setLogin("Jesus3");
-	u.setSenha("123");
-	u.setNome("123123 ajudajesus");
+	u.setLogin("usuario");
+	u.setSenha("usuario");
+	u.setNome("Nome do Vendedor");
 	u.setTipo(Tipo.VENDEDOR);
 	UsuarioController.getInstance().cadastrarUsuario(u);
 	List<Usuario> l=UsuarioController.getInstance().getUsuarioList();

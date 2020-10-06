@@ -32,6 +32,7 @@ public class UsuarioController {
 			UserQ.setParameter("senha", password);
 			try {
 				loggedUser = UserQ.getSingleResult();
+			
 			} catch (Exception e) {
 				System.out.println("Falha ao logar");
 				e.printStackTrace();
