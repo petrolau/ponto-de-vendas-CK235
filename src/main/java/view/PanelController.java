@@ -12,9 +12,9 @@ import model.Tipo;
 
 
 public class PanelController {
-	JFrame frame;
-	Stack<JPanel> panelStack = new Stack<>();
-	JPanel atual=null;
+	private JFrame frame;
+	private Stack<JPanel> panelStack = new Stack<>();
+	private JPanel atual=null;
 	private static PanelController p;
 
 

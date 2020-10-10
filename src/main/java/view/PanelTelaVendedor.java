@@ -5,6 +5,10 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.UIManager;
+
+import controller.UsuarioController;
+import model.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -19,6 +23,8 @@ public class PanelTelaVendedor extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelTelaVendedor() {
+		Usuario user=UsuarioController.getInstance().getLoggedUser();
+		
 		setBackground(new Color(0, 0, 0));
 		setLayout(null);
 		this.setBounds(0, 0, 768, 580);
@@ -42,25 +48,27 @@ public class PanelTelaVendedor extends JPanel {
 		PainelInterno.setLayout(null);
 		
 		Nome = new JTextField();
-		Nome.setBounds(178, 128, 271, 27);
+		Nome.setEditable(false);
+		Nome.setBounds(176, 96, 271, 27);
 		PainelInterno.add(Nome);
 		Nome.setColumns(10);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setColumns(10);
-		textField.setBounds(178, 202, 271, 27);
+		textField.setBounds(176, 127, 271, 27);
 		PainelInterno.add(textField);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Fira Code", Font.PLAIN, 18));
 		lblNome.setForeground(new Color(129,129,129));
-		lblNome.setBounds(105, 131, 55, 16);
+		lblNome.setBounds(103, 99, 55, 16);
 		PainelInterno.add(lblNome);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setFont(new Font("Fira Code", Font.PLAIN, 18));
 		lblCpf.setForeground(new Color(129,129,129));
-		lblCpf.setBounds(105, 205, 55, 16);
+		lblCpf.setBounds(103, 130, 55, 16);
 		
 		PainelInterno.add(lblCpf);
 		JPanel panelButtons = new JPanel();
@@ -79,6 +87,7 @@ public class PanelTelaVendedor extends JPanel {
 		JButton btnConVendas = new JButton("VENDER");
 		btnConVendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				PanelController.getInstance().trocar(new PanelVendasVendedor());
 			}
 		});
 		btnConVendas.setBackground(Color.WHITE);
@@ -86,7 +95,12 @@ public class PanelTelaVendedor extends JPanel {
 		btnConVendas.setBounds(38, 96, 142, 52);
 		panelButtons.add(btnConVendas);
 		
-		JButton btConEstoque = new JButton("CONSULTAR ESTOQUE");
+		JButton btConEstoque = new JButton("CONSULTAR DE VENDAS");
+		btConEstoque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().trocar(new PanelConsultaVendasVendedor());
+			}
+		});
 		btConEstoque.setBackground(Color.WHITE);
 		btConEstoque.setFont(new Font("Fira Code", Font.PLAIN, 10));
 		btConEstoque.setBounds(38, 181, 142, 52);
@@ -97,6 +111,10 @@ public class PanelTelaVendedor extends JPanel {
 		btSair.setBackground(Color.WHITE);
 		btSair.setBounds(34, 425, 146, 52);
 		panelButtons.add(btSair);
+		
+		Nome.setText(user.getNome());
+		textField.setText(user.getCPF());
+		
 
 	}
 }

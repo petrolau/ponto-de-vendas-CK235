@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class PanelConsultaEstoqueAdmin extends JPanel {
 	private JTable table;
@@ -39,10 +40,10 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		lblFiltrarPor.setFont(new Font("Fira Code",Font.PLAIN,13));
 		add(lblFiltrarPor);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(10, 67, 206, 38);
-		add(comboBox);
+		JTextField TextFieldFiltro = new JTextField();
+		TextFieldFiltro.setBackground(Color.WHITE);
+		TextFieldFiltro.setBounds(10, 67, 206, 38);
+		add(TextFieldFiltro);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -52,7 +53,7 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		});
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(102, 206, 214));
-		btnVoltar.setBounds(337, 546, 90, 28);
+		btnVoltar.setBounds(56, 546, 90, 28);
 		add(btnVoltar);
 		
 		JPanel panel = new JPanel();
@@ -100,6 +101,18 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.setBounds(10, 180, 740, 328);
 		add(table);
+		
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.setForeground(Color.WHITE);
+		btnAdicionar.setBackground(new Color(102, 206, 214));
+		btnAdicionar.setBounds(332, 546, 90, 28);
+		add(btnAdicionar);
+		
+		JButton btnDeletar = new JButton("Atualizar");
+		btnDeletar.setForeground(Color.WHITE);
+		btnDeletar.setBackground(new Color(102, 206, 214));
+		btnDeletar.setBounds(585, 546, 90, 28);
+		add(btnDeletar);
 
 	}
 }

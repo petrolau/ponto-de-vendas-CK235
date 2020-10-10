@@ -98,7 +98,7 @@ public class PanelConsultaVendasVendedor extends JPanel {
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBackground(new Color(102, 206, 214));
-		btnVoltar.setBounds(337, 546, 90, 28);
+		btnVoltar.setBounds(337, 527, 90, 28);
 		add(btnVoltar);
 		
 		JPanel panel = new JPanel();
