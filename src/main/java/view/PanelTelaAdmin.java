@@ -11,10 +11,12 @@ import model.Usuario;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelTelaAdmin extends JPanel {
 	private JTextField Nome;
-	private JTextField textField;
+	private JTextField cpfField;
 	private Usuario user;
 	/**
 	 * Create the panel.
@@ -47,13 +49,17 @@ public class PanelTelaAdmin extends JPanel {
 		Nome = new JTextField();
 		Nome.setEditable(false);
 		Nome.setBounds(200, 106, 271, 27);
+		Nome.setText(user.getNome());
 		PainelInterno.add(Nome);
+		
 		Nome.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(200, 140, 271, 27);
-		PainelInterno.add(textField);
+		cpfField = new JTextField();
+		cpfField.setEditable(false);
+		cpfField.setColumns(10);
+		cpfField.setBounds(200, 140, 271, 27);
+		cpfField.setText(user.getCPF());
+		PainelInterno.add(cpfField);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Fira Code", Font.PLAIN, 18));
@@ -81,24 +87,44 @@ public class PanelTelaAdmin extends JPanel {
 		panelButtons.add(TipoUsuario);
 		
 		JButton btnConVendas = new JButton("CONSULTAR VENDAS");
+		btnConVendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().trocar(new PanelConsultaVendasAdmin());
+			}
+		});
 		btnConVendas.setBackground(Color.WHITE);
 		btnConVendas.setFont(new Font("Fira Code", Font.PLAIN, 10));
 		btnConVendas.setBounds(34, 60, 142, 52);
 		panelButtons.add(btnConVendas);
 		
 		JButton btConEstoque = new JButton("CONSULTAR ESTOQUE");
+		btConEstoque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().trocar(new PanelConsultaEstoqueAdmin());
+			}
+		});
 		btConEstoque.setBackground(Color.WHITE);
 		btConEstoque.setFont(new Font("Fira Code", Font.PLAIN, 10));
 		btConEstoque.setBounds(34, 124, 146, 52);
 		panelButtons.add(btConEstoque);
 		
 		JButton btConVendedor = new JButton("CONSULTAR VENDEDORES");
+		btConVendedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().trocar(new PanelConsultaVendedorAdmin());
+			}
+		});
 		btConVendedor.setBackground(Color.WHITE);
 		btConVendedor.setFont(new Font("Fira Code", Font.PLAIN, 8));
 		btConVendedor.setBounds(34, 185, 146, 52);
 		panelButtons.add(btConVendedor);
 		
 		JButton btSair = new JButton("SAIR");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().encerrar();
+			}
+		});
 		btSair.setFont(new Font("Fira Code", Font.PLAIN, 14));
 		btSair.setBackground(Color.WHITE);
 		btSair.setBounds(34, 425, 146, 52);

@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelConsultaEstoqueAdmin extends JPanel {
 	private JTable table;
@@ -43,6 +45,11 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		add(comboBox);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().retornar();
+			}
+		});
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(102, 206, 214));
 		btnVoltar.setBounds(337, 546, 90, 28);

@@ -17,6 +17,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelConsultaVendasAdmin extends JPanel {
 	private JTable table;
@@ -31,7 +33,7 @@ public class PanelConsultaVendasAdmin extends JPanel {
 		setLayout(null);
 		
 		JLabel lblVendas = new JLabel("Vendas");
-		lblVendas.setBounds(341, 5, 86, 33);
+		lblVendas.setBounds(341, 5, 218, 33);
 		lblVendas.setFont(new Font("Fira Code", Font.PLAIN, 25));
 		lblVendas.setForeground(new Color(129,129,129));
 		add(lblVendas);
@@ -91,6 +93,11 @@ public class PanelConsultaVendasAdmin extends JPanel {
 		add(table);
 		
 		JButton btnNewButton = new JButton("Voltar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().retornar();
+			}
+		});
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(102, 206, 214));
 		btnNewButton.setBounds(126, 541, 90, 28);

@@ -65,6 +65,7 @@ public class UsuarioController {
 			User.setLogin("Admin");
 			User.setNome("Administrador Padrão");
 			User.setSenha("admin");
+			User.setCPF("000.000.000-00");
 			User.setTipo(Tipo.ADMINISTRADOR);
 			em.persist(User);
 			em.getTransaction().commit();
@@ -82,12 +83,8 @@ public class UsuarioController {
 	}
 	public void atualizarUsuario(Usuario u) {
 		EntityManager em=DBUtil.getEntityManager();
-		Usuario u2=em.find(Usuario.class, u.getId());
 		em.getTransaction().begin();
-		u2.setLogin(u.getLogin());
-		u2.setNome(u.getNome());
-		u2.setTipo(u.getTipo());
-		u2.setSenha(u.getSenha());
+		em.persist(u);
 		em.getTransaction().commit();
 		DBUtil.closeEntityManager(em);
 	}

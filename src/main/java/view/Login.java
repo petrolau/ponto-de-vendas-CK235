@@ -67,9 +67,9 @@ public class Login {
 	 */
 	private void initialize() {
 		frmLogin = new JFrame();
+		frmLogin.setResizable(false);
 		frmLogin.getContentPane().setEnabled(false);
 		frmLogin.setTitle("Login");
-		frmLogin.setResizable(false);
 		frmLogin.getContentPane().setBackground(Color.WHITE);
 		frmLogin.getContentPane().setLayout(null);
 

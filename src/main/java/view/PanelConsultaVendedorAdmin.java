@@ -10,20 +10,37 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+
+import controller.UsuarioController;
+import model.Tipo;
+import model.Usuario;
+
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JFormattedTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class PanelConsultaVendedorAdmin extends JPanel {
 	private JTextField txtNome;
-	private JTextField txtCpf;
+	private JFormattedTextField txtCpf;
 	private JTextField txtSenha;
+	private JTable table;
+	private JTextField txtLogin;
 
 	/**
 	 * Create the panel.
@@ -32,32 +49,37 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		setBackground(Color.WHITE);
 		this.setBounds(0, 0, 768, 580);
 		setLayout(null);
-		
+
 		JLabel lblEstoque = new JLabel("VENDEDORES");
 		lblEstoque.setBounds(332, 12, 200, 28);
 		lblEstoque.setFont(new Font("Fira Code", Font.PLAIN, 25));
-		lblEstoque.setForeground(new Color(129,129,129));
+		lblEstoque.setForeground(new Color(129, 129, 129));
 		add(lblEstoque);
-		
+
 		JLabel lblFiltrarPor = new JLabel("Filtrar por:");
-		lblFiltrarPor.setBounds(428, 199, 99, 14);
+		lblFiltrarPor.setBounds(428, 180, 99, 14);
 		lblFiltrarPor.setForeground(new Color(134, 134, 134));
-		lblFiltrarPor.setFont(new Font("Fira Code",Font.PLAIN,13));
+		lblFiltrarPor.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(lblFiltrarPor);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("");
 		comboBox.setForeground(new Color(30, 144, 255));
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(428, 219, 206, 38);
+		comboBox.setBounds(428, 200, 206, 38);
 		add(comboBox);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().retornar();
+			}
+		});
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(0, 191, 255));
 		btnVoltar.setBounds(73, 510, 104, 28);
 		add(btnVoltar);
-		
+
 		JPanel panel = new JPanel();
 		panel.setForeground(new Color(0, 191, 255));
 		panel.setBackground(Color.WHITE);
@@ -65,97 +87,171 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		panel.setBounds(20, 124, 347, 56);
 		add(panel);
 		panel.setLayout(null);
-		
 
 		JLabel lblVendedores = new JLabel("VENDEDORES");
 		lblVendedores.setBounds(109, 15, 156, 28);
 		panel.add(lblVendedores);
-		lblVendedores.setFont(new Font("Fira Code",Font.PLAIN,20));
+		lblVendedores.setFont(new Font("Fira Code", Font.PLAIN, 20));
 		lblVendedores.setForeground(Color.WHITE);
-		
+
 		JLabel lblAdicionarVendedor = new JLabel("Adicionar vendedor:");
 		lblAdicionarVendedor.setForeground(new Color(134, 134, 134));
 		lblAdicionarVendedor.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblAdicionarVendedor.setBounds(428, 291, 173, 14);
+		lblAdicionarVendedor.setBounds(428, 277, 173, 14);
 		add(lblAdicionarVendedor);
-		
+
 		txtNome = new JTextField();
+		txtNome.setText("Nome");
+		txtNome.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtNome.getText().equals("Nome")) {
+					txtNome.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtNome.getText().isEmpty()) {
+					txtNome.setText("Nome");
+				}
+			}
+		});
+		txtNome.setToolTipText("Nome\r\n");
 		txtNome.setForeground(Color.DARK_GRAY);
-		txtNome.setText("nome");
-		txtNome.setBounds(428, 318, 206, 38);
-	
+		txtNome.setBounds(428, 303, 206, 38);
+
 		txtNome.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(txtNome);
 		txtNome.setColumns(10);
-		
-		txtCpf = new JTextField();
-		txtCpf.setText("CPF");
+
+		MaskFormatter CPFMask = null;
+		try {
+			CPFMask = new MaskFormatter("###.###.###-##");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		txtCpf = new JFormattedTextField();
+		txtCpf.setToolTipText("CPF");
+		txtCpf.setFormatterFactory(new DefaultFormatterFactory(CPFMask));
 		txtCpf.setForeground(Color.DARK_GRAY);
 		txtCpf.setColumns(10);
 		txtCpf.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		txtCpf.setBounds(428, 369, 206, 38);
+		txtCpf.setBounds(428, 342, 206, 38);
 		add(txtCpf);
-		
+
 		txtSenha = new JTextField();
+		txtSenha.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtSenha.getText().equals("Senha")) {
+					txtSenha.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtSenha.getText().isEmpty()) {
+					txtSenha.setText("Senha");
+				}
+			}
+
+		});
+		txtSenha.setToolTipText("Senha");
 		txtSenha.setText("Senha");
 		txtSenha.setForeground(Color.DARK_GRAY);
 		txtSenha.setColumns(10);
 		txtSenha.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		txtSenha.setBounds(428, 419, 206, 38);
+		txtSenha.setBounds(428, 416, 206, 38);
 		add(txtSenha);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(128, 128, 128)));
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(20, 180, 347, 314);
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"CINTHIA, LAURA, Dani"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setToolTipText("CINTHIA");
-		list.setEnabled(false);
-		list.setBounds(29, 55, 335, 209);
-		panel_1.add(list);
-		
+
 		add(panel_1);
-		
+
+		table = new JTable();
+		table.setForeground(Color.BLACK);
+		table.setModel(new DefaultTableModel(new Object[][] { { "Laura" }, { "Cinthia" }, { "Dani" }, },
+				new String[] { "Vendedor" }));
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(345);
+		table.getColumnModel().getColumn(0).setMinWidth(345);
+
+		table.setShowGrid(false);
+		table.setEnabled(false);
+		panel_1.add(table);
+
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.setForeground(Color.WHITE);
 		btnAtualizar.setBackground(new Color(0, 191, 255));
 		btnAtualizar.setBounds(208, 510, 104, 28);
 		add(btnAtualizar);
-		
+
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nome = txtNome.getText();
+				String login = txtLogin.getText();
+				String cpf = txtCpf.getText();
+				String senha = txtSenha.getText();
+				if (!(nome.contentEquals("Nome") || login.contentEquals("Login") || senha.contentEquals("Senha"))) {
+					txtNome.setText("Nome");
+					txtLogin.setText("Login");
+					txtCpf.setText("");
+					txtSenha.setText("Senha");
+					if (!(nome.isEmpty() || cpf.isEmpty() || senha.isEmpty())) {
+						Usuario u = new Usuario();
+						u.setNome(nome);
+						u.setLogin(login);
+						u.setCPF(cpf);
+						u.setSenha(senha);
+						u.setTipo(Tipo.VENDEDOR);
+						UsuarioController.getInstance().cadastrarUsuario(u);
+
+					} else {
+						errorMessage("não é possível adicionar campos vazios");
+					}
+				}else {
+					errorMessage("não é possível cadastrar com os campos com valores padrão");
+				}
+			}
+		});
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBackground(new Color(0, 191, 255));
 		btnCadastrar.setBounds(482, 466, 104, 28);
 		add(btnCadastrar);
-	}
-	private Color Color(int i, int j, int k) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+
+		txtLogin = new JTextField();
+		txtLogin.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtLogin.getText().equals("Login")) {
+					txtLogin.setText("");
 				}
 			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtLogin.getText().isEmpty()) {
+					txtLogin.setText("Login");
 				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+		txtLogin.setText("Login");
+		txtLogin.setToolTipText("Login");
+		txtLogin.setForeground(Color.DARK_GRAY);
+		txtLogin.setColumns(10);
+		txtLogin.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		txtLogin.setBounds(428, 378, 206, 38);
+		add(txtLogin);
+	}
+	public void errorMessage(String msg) {
+		JOptionPane.showMessageDialog(null, msg, "Erro",
+				JOptionPane.ERROR_MESSAGE);
 	}
 }

@@ -13,7 +13,7 @@ public class Usuario {
 	private String login;
 	@Column(nullable=false)
 	private String senha;
-	@Column(nullable=false)
+	@Column(unique=true,nullable=false)
 	private String CPF;
 	@Column(nullable=false)
 	private Tipo tipo;
