@@ -14,7 +14,16 @@ public class Usuario {
 	@Column(nullable=false)
 	private String senha;
 	@Column(nullable=false)
+	private String CPF;
+	@Column(nullable=false)
 	private Tipo tipo;
+	
+	public String getCPF() {
+		return CPF;
+	}
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
 	public Integer getId() {
 		return id;
 	}

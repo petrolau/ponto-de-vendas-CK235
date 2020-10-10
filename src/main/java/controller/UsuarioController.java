@@ -43,6 +43,11 @@ public class UsuarioController {
 		DBUtil.closeEntityManager(em);
 		return false;
 	}
+	public static void deslogar() {
+		UsuarioController.getInstance().loggedUser=null;
+		UsuarioController.destroyInstance();
+		
+	}
 
 	public Usuario getLoggedUser() {
 		return loggedUser;
@@ -107,7 +112,7 @@ public class UsuarioController {
 		return Controller;
 	}
 
-	public static void destroyInstance() {
+	private static void destroyInstance() {
 		Controller = null;
 		System.gc();
 	}

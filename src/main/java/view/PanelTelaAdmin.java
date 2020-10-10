@@ -5,17 +5,23 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.UIManager;
+
+import controller.UsuarioController;
+import model.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class PanelTelaAdmin extends JPanel {
 	private JTextField Nome;
 	private JTextField textField;
-
+	private Usuario user;
 	/**
 	 * Create the panel.
 	 */
 	public PanelTelaAdmin() {
+		user=UsuarioController.getInstance().getLoggedUser();
+		
 		setBackground(new Color(0, 0, 0));
 		setLayout(null);
 		this.setBounds(0, 0, 768, 580);
@@ -39,6 +45,7 @@ public class PanelTelaAdmin extends JPanel {
 		PainelInterno.setLayout(null);
 		
 		Nome = new JTextField();
+		Nome.setEditable(false);
 		Nome.setBounds(200, 106, 271, 27);
 		PainelInterno.add(Nome);
 		Nome.setColumns(10);
