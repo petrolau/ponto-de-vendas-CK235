@@ -78,7 +78,7 @@ public class PanelAdicionarAdmin extends JPanel {
 				String nome=txtNome.getText();
 				String Senha=String.copyValueOf(txtSenha.getPassword());
 				String login=txtLogin.getText();
-				if(!(login.isEmpty()||nome.isEmpty()||Senha.isEmpty()||login.isEmpty()||cpf.length()<11)) {
+				if(!(login.isEmpty()||nome.isEmpty()||Senha.isEmpty()||cpf.length()<11)) {
 					Usuario u= new Usuario();
 					u.setCPF(cpf);
 					u.setNome(nome);
