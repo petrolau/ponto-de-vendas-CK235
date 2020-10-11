@@ -204,7 +204,7 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 					txtLogin.setText("Login");
 					txtCpf.setText("");
 					txtSenha.setText("Senha");
-					if (!(nome.isEmpty() || cpf.isEmpty() || senha.isEmpty())) {
+					if (!(nome.isEmpty() || cpf.isEmpty() || senha.isEmpty()||cpf.length()<11)) {
 						Usuario u = new Usuario();
 						u.setNome(nome);
 						u.setLogin(login);

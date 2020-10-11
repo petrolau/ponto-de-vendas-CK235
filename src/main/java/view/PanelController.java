@@ -51,13 +51,16 @@ public class PanelController {
 		draw(panelStack.pop());
 	}
 	public void encerrar() {
+		frame.remove(atual);
+		frame.setVisible(false);
 		
+		frame.dispose();
 	}
 
 	public void start() {
 		frame = new JFrame();
 		frame.setBounds(20,20, 768, 600);
-		
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		if (UsuarioController.getInstance().getLoggedUser().getTipo() == Tipo.ADMINISTRADOR) {

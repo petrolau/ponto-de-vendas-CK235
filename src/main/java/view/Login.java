@@ -23,6 +23,8 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login {
 
@@ -65,8 +67,30 @@ public class Login {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	private void logar() {
+		String login = loginField.getText();
+		char[] password = passwordField.getPassword();
+		String pw = String.valueOf(password);
+		if (UsuarioController.getInstance().logar(login, pw)) {
+			PanelController.getInstance().start();
+			frmLogin.setVisible(false);
+			frmLogin.dispose();
+		} else {
+			JOptionPane.showMessageDialog(frmLogin, "Usuário ou senha errados");
+		}
+		
+	}
 	private void initialize() {
 		frmLogin = new JFrame();
+		frmLogin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println(e);
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					logar();
+				}
+			}
+		});
 		frmLogin.setResizable(false);
 		frmLogin.getContentPane().setEnabled(false);
 		frmLogin.setTitle("Login");
@@ -91,6 +115,15 @@ public class Login {
 		panel_1.setLayout(null);
 
 		loginField = new JTextField();
+		loginField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				//System.out.println(e);
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					logar();
+				}
+			}
+		});
 		loginField.setBounds(61, 101, 247, 31);
 		panel_1.add(loginField);
 		loginField.setColumns(10);
@@ -98,16 +131,7 @@ public class Login {
 		JButton LogarButton = new JButton("Logar");
 		LogarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String login = loginField.getText();
-				char[] password = passwordField.getPassword();
-				String pw = String.valueOf(password);
-				if (UsuarioController.getInstance().logar(login, pw)) {
-					PanelController.getInstance().start();
-					frmLogin.setVisible(false);
-					frmLogin.dispose();
-				} else {
-					JOptionPane.showMessageDialog(frmLogin, "Usuário ou senha errados");
-				}
+				logar();
 			}
 		});
 		LogarButton.setBackground(new Color(102, 206, 214));
@@ -116,6 +140,14 @@ public class Login {
 		panel_1.add(LogarButton);
 
 		passwordField = new JPasswordField();
+		passwordField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					logar();
+				}
+			}
+		});
 		passwordField.setBounds(61, 164, 247, 31);
 
 		panel_1.add(passwordField);
@@ -140,6 +172,7 @@ public class Login {
 		frmLogin.getContentPane().add(lblNewLabel);
 		frmLogin.setBackground(Color.WHITE);
 		frmLogin.setBounds(100, 100, 768, 633);
+		frmLogin.setLocationRelativeTo(null);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

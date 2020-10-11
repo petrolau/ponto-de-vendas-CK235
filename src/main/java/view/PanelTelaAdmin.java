@@ -129,6 +129,17 @@ public class PanelTelaAdmin extends JPanel {
 		btSair.setBackground(Color.WHITE);
 		btSair.setBounds(34, 425, 146, 52);
 		panelButtons.add(btSair);
+		
+		JButton btnAdicionarAdministrador = new JButton("ADICIONAR ADMINISTRADOR");
+		btnAdicionarAdministrador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModalController.getInstance().createModal(new PanelAdicionarAdmin());
+			}
+		});
+		btnAdicionarAdministrador.setFont(new Font("Dialog", Font.PLAIN, 8));
+		btnAdicionarAdministrador.setBackground(Color.WHITE);
+		btnAdicionarAdministrador.setBounds(34, 246, 146, 52);
+		panelButtons.add(btnAdicionarAdministrador);
 
 	}
 }

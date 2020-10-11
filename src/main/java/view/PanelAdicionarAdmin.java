@@ -5,11 +5,16 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+
+import controller.UsuarioController;
+import model.Tipo;
+import model.Usuario;
 
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -18,10 +23,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
 
 public class PanelAdicionarAdmin extends JPanel {
-	private JFormattedTextField textField;
-	private JPasswordField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JFormattedTextField txtCpf;
+	private JPasswordField txtSenha;
+	private JTextField txtLogin;
+	private JTextField txtNome;
 
 	/**
 	 * Create the panel.
@@ -69,6 +74,25 @@ public class PanelAdicionarAdmin extends JPanel {
 		JButton btnNewButton = new JButton("ADICIONAR");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String cpf=txtCpf.getText();
+				String nome=txtNome.getText();
+				String Senha=String.copyValueOf(txtSenha.getPassword());
+				String login=txtLogin.getText();
+				if(!(login.isEmpty()||nome.isEmpty()||Senha.isEmpty()||login.isEmpty()||cpf.length()<11)) {
+					Usuario u= new Usuario();
+					u.setCPF(cpf);
+					u.setNome(nome);
+					u.setSenha(Senha);
+					u.setLogin(login);
+					u.setTipo(Tipo.ADMINISTRADOR);
+					UsuarioController.getInstance().cadastrarUsuario(u);
+					txtCpf.setText("");
+					txtNome.setText("");
+					txtSenha.setText("");
+					txtLogin.setText("");
+				}else {
+					JOptionPane.showMessageDialog(null, "não é possível adicionar campos vazios","erro", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnNewButton.setForeground(Color.DARK_GRAY);
@@ -84,26 +108,26 @@ public class PanelAdicionarAdmin extends JPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		textField = new JFormattedTextField();
-		textField.setBounds(28, 242, 193, 26);
-		textField.setFormatterFactory(new DefaultFormatterFactory(CPFMask));
-		add(textField);
-		textField.setColumns(10);
+		txtCpf = new JFormattedTextField();
+		txtCpf.setBounds(28, 242, 193, 26);
+		txtCpf.setFormatterFactory(new DefaultFormatterFactory(CPFMask));
+		add(txtCpf);
+		txtCpf.setColumns(10);
 		
-		textField_1 = new JPasswordField();
-		textField_1.setBounds(325, 242, 187, 26);
-		add(textField_1);
-		textField_1.setColumns(10);
+		txtSenha = new JPasswordField();
+		txtSenha.setBounds(325, 242, 187, 26);
+		add(txtSenha);
+		txtSenha.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(325, 124, 187, 26);
-		add(textField_2);
-		textField_2.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setBounds(325, 124, 187, 26);
+		add(txtLogin);
+		txtLogin.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(28, 124, 193, 26);
-		add(textField_3);
+		txtNome = new JTextField();
+		txtNome.setColumns(10);
+		txtNome.setBounds(28, 124, 193, 26);
+		add(txtNome);
 		
 
 	}
