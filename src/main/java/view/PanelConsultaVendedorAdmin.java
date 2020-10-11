@@ -25,6 +25,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
@@ -34,18 +35,34 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.ListSelectionModel;
+import javax.swing.BoxLayout;
+import javax.swing.JScrollPane;
 
 public class PanelConsultaVendedorAdmin extends JPanel {
 	private JTextField txtNome;
 	private JFormattedTextField txtCpf;
 	private JTextField txtSenha;
-	private JTable table;
 	private JTextField txtLogin;
+	private JTable table;
+	private DefaultTableModel dfm;
 
 	/**
 	 * Create the panel.
 	 */
+	private void resetarTabela() {
+		List<Usuario> vendedores = UsuarioController.getInstance().getVendedorList();
+		while (dfm.getRowCount() > 0) {
+			dfm.removeRow(dfm.getRowCount() - 1);
+		}
+		for (Usuario vendedor : vendedores) {
+			// System.out.println(vendedor);
+			dfm.addRow(new Object[] { vendedor });
+		}
+	}
+
 	public PanelConsultaVendedorAdmin() {
+
 		setBackground(Color.WHITE);
 		this.setBounds(0, 0, 768, 580);
 		setLayout(null);
@@ -62,12 +79,12 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		lblFiltrarPor.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(lblFiltrarPor);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setToolTipText("");
-		comboBox.setForeground(new Color(30, 144, 255));
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(428, 200, 206, 38);
-		add(comboBox);
+		JTextField txtFiltro = new JTextField();
+		txtFiltro.setToolTipText("");
+		txtFiltro.setForeground(new Color(30, 144, 255));
+		txtFiltro.setBackground(Color.WHITE);
+		txtFiltro.setBounds(428, 200, 206, 38);
+		add(txtFiltro);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -167,26 +184,57 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		txtSenha.setBounds(428, 416, 206, 38);
 		add(txtSenha);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(128, 128, 128)));
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(20, 180, 347, 314);
-
-		add(panel_1);
-
 		table = new JTable();
-		table.setForeground(Color.BLACK);
-		table.setModel(new DefaultTableModel(new Object[][] { { "Laura" }, { "Cinthia" }, { "Dani" }, },
-				new String[] { "Vendedor" }));
+		table.setBackground(Color.WHITE);
+
+		table.setShowGrid(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setModel(
+				new DefaultTableModel(
+			new Object[][] {
+				{"teste"},
+				{"teste"},
+			},
+			new String[] {
+				"Vendedor"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(345);
 		table.getColumnModel().getColumn(0).setMinWidth(345);
 
-		table.setShowGrid(false);
-		table.setEnabled(false);
-		panel_1.add(table);
+		dfm = (DefaultTableModel) table.getModel();
+		resetarTabela();
+//		for (int i = 0; i < 100; i++)
+//			dfm.addRow(new Object[] { "teste" + i, "teste" });
+
+		table.setFont(new Font("Fira Code", Font.PLAIN, 13));
+		table.setTableHeader(null);
+
+		JScrollPane panel_1 = new JScrollPane(table);
+		panel_1.setBorder(new LineBorder(new Color(128, 128, 128)));
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(20, 180, 347, 314);
+		add(panel_1);
 
 		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() > -1) {
+					Usuario u = (Usuario) table.getModel().getValueAt(table.getSelectedRow(), 0);
+					ModalController.getInstance().createModal(new PanelAtualizarVendedor(u));
+				} else {
+					errorMessage("Selecione uma linha");
+				}
+			}
+		});
 		btnAtualizar.setForeground(Color.WHITE);
 		btnAtualizar.setBackground(new Color(0, 191, 255));
 		btnAtualizar.setBounds(208, 510, 104, 28);
@@ -204,7 +252,7 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 					txtLogin.setText("Login");
 					txtCpf.setText("");
 					txtSenha.setText("Senha");
-					if (!(nome.isEmpty() || cpf.isEmpty() || senha.isEmpty()||cpf.length()<11)) {
+					if (!(nome.isEmpty() || cpf.isEmpty() || senha.isEmpty() || cpf.length() < 11)) {
 						Usuario u = new Usuario();
 						u.setNome(nome);
 						u.setLogin(login);
@@ -216,7 +264,7 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 					} else {
 						errorMessage("não é possível adicionar campos vazios");
 					}
-				}else {
+				} else {
 					errorMessage("não é possível cadastrar com os campos com valores padrão");
 				}
 			}
@@ -250,8 +298,8 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		txtLogin.setBounds(428, 378, 206, 38);
 		add(txtLogin);
 	}
+
 	public void errorMessage(String msg) {
-		JOptionPane.showMessageDialog(null, msg, "Erro",
-				JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, msg, "Erro", JOptionPane.ERROR_MESSAGE);
 	}
 }

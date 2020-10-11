@@ -83,14 +83,26 @@ public class UsuarioController {
 	}
 	public void atualizarUsuario(Usuario u) {
 		EntityManager em=DBUtil.getEntityManager();
+		Usuario u2=em.find(Usuario.class,u.getId());
 		em.getTransaction().begin();
-		em.persist(u);
+		u2.setCPF(u.getCPF());
+		u2.setNome(u2.getNome());
+		u2.setLogin(u.getLogin());
+		u2.setSenha(u2.getSenha());
 		em.getTransaction().commit();
 		DBUtil.closeEntityManager(em);
 	}
 	public List<Usuario> getUsuarioList(){
 		EntityManager em=DBUtil.getEntityManager();
 		TypedQuery<Usuario> q=em.createQuery("FROM Usuario",Usuario.class);
+		List<Usuario> u=q.getResultList();
+		DBUtil.closeEntityManager(em);
+		return u;
+	}
+	public List<Usuario> getVendedorList(){
+		EntityManager em=DBUtil.getEntityManager();
+		TypedQuery<Usuario> q=em.createQuery("FROM Usuario u Where u.tipo=:tipo",Usuario.class);
+		q.setParameter("tipo", Tipo.VENDEDOR);
 		List<Usuario> u=q.getResultList();
 		DBUtil.closeEntityManager(em);
 		return u;

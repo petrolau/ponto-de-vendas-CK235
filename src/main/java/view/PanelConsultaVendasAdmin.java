@@ -74,18 +74,7 @@ public class PanelConsultaVendasAdmin extends JPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(185);
 		table.getColumnModel().getColumn(0).setMinWidth(185);
 		table.getColumnModel().getColumn(0).setMaxWidth(185);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(185);
-		table.getColumnModel().getColumn(1).setMinWidth(185);
-		table.getColumnModel().getColumn(1).setMaxWidth(185);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(2).setPreferredWidth(185);
-		table.getColumnModel().getColumn(2).setMinWidth(185);
-		table.getColumnModel().getColumn(2).setMaxWidth(185);
-		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(3).setPreferredWidth(185);
-		table.getColumnModel().getColumn(3).setMinWidth(185);
-		table.getColumnModel().getColumn(3).setMaxWidth(185);
+
 		table.setRowHeight(30);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		table.setBounds(10, 187, 740, 328);

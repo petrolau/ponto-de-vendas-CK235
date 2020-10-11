@@ -39,6 +39,8 @@ public class PanelController {
 		if(atual!=null) {
 			frame.remove(atual);
 		}
+		frame.revalidate();
+		frame.repaint();
 		panelStack.push(atual);
 		draw(p);
 		
