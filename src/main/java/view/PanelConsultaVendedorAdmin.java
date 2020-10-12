@@ -192,8 +192,6 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		table.setModel(
 				new DefaultTableModel(
 			new Object[][] {
-				{"teste"},
-				{"teste"},
 			},
 			new String[] {
 				"Vendedor"
