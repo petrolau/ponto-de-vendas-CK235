@@ -38,4 +38,8 @@ public class ProdutoController {
 		em.getTransaction().commit();
 		DBUtil.closeEntityManager(em);
 	}
+	public static ProdutoController getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -13,6 +13,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+import model.Produto;
+import model.Usuario;
+import controller.ProdutoController;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -53,7 +58,7 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		});
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(new Color(102, 206, 214));
-		btnVoltar.setBounds(56, 546, 90, 28);
+		btnVoltar.setBounds(66, 546, 90, 28);
 		add(btnVoltar);
 		
 		JPanel panel = new JPanel();
@@ -103,15 +108,26 @@ public class PanelConsultaEstoqueAdmin extends JPanel {
 		add(table);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModalController.getInstance().createModal(new PanelAdicionarProduto());
+				
+			}
+		});
 		btnAdicionar.setForeground(Color.WHITE);
 		btnAdicionar.setBackground(new Color(102, 206, 214));
-		btnAdicionar.setBounds(332, 546, 90, 28);
+		btnAdicionar.setBounds(332, 546, 130, 28);
 		add(btnAdicionar);
 		
 		JButton btnDeletar = new JButton("Atualizar");
+		btnDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ModalController.getInstance().createModal(new PanelAtualizarProduto());
+			}
+		});
 		btnDeletar.setForeground(Color.WHITE);
 		btnDeletar.setBackground(new Color(102, 206, 214));
-		btnDeletar.setBounds(585, 546, 90, 28);
+		btnDeletar.setBounds(611, 546, 110, 28);
 		add(btnDeletar);
 
 	}
