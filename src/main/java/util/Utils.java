@@ -1,5 +1,7 @@
 package util;
 
+import javax.swing.JOptionPane;
+
 public class Utils {
 
 	public static boolean areEmpty(String... args) {
@@ -9,4 +11,10 @@ public class Utils {
 		}
 		return result;
 	}
+	public static void errorMessage(String msg) {
+		JOptionPane.showMessageDialog(null, msg, "Erro", JOptionPane.ERROR_MESSAGE);
+	}
+	
+
 }
+

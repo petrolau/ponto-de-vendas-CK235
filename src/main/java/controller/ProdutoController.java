@@ -19,16 +19,28 @@ public class ProdutoController {
 		em.getTransaction().commit();
 		DBUtil.closeEntityManager(em);
 	}
-	public static List<Produto> getProdutoList(){
-		EntityManager em=DBUtil.getEntityManager();
-		TypedQuery<Produto> q=em.createQuery("FROM Produto",Produto.class);
-		List<Produto> ps=q.getResultList();
+
+	public static List<Produto> getProdutoList() {
+		EntityManager em = DBUtil.getEntityManager();
+		TypedQuery<Produto> q = em.createQuery("FROM Produto", Produto.class);
+		List<Produto> ps = q.getResultList();
 		DBUtil.closeEntityManager(em);
 		return ps;
 	}
+
+	public static List<Produto> getProdutoListMatches(String s) {
+		EntityManager em = DBUtil.getEntityManager();
+		TypedQuery<Produto> q = em.createQuery("FROM Produto p WHERE p.nomeProduto LIKE '%" + s + "%' ", Produto.class);
+		q.setParameter("nome", s);
+		List<Produto> ps = q.getResultList();
+		DBUtil.closeEntityManager(em);
+		return ps;
+
+	}
+
 	public static void atualizarProduto(Produto p) {
-		EntityManager em=DBUtil.getEntityManager();
-		Produto p2=em.find(Produto.class, p.getId());
+		EntityManager em = DBUtil.getEntityManager();
+		Produto p2 = em.find(Produto.class, p.getId());
 		em.getTransaction().begin();
 		p2.setDescricao(p.getDescricao());
 		p2.setNomeProduto(p.getNomeProduto());
@@ -37,9 +49,5 @@ public class ProdutoController {
 		p2.setTipo(p.getTipo());
 		em.getTransaction().commit();
 		DBUtil.closeEntityManager(em);
-	}
-	public static ProdutoController getInstance() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

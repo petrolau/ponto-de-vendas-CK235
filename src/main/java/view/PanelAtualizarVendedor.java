@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import controller.UsuarioController;
 import model.Tipo;
 import model.Usuario;
+import util.Utils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -85,8 +86,7 @@ public class PanelAtualizarVendedor extends JPanel {
 					UsuarioController.getInstance().atualizarUsuario(u);
 					ModalController.getInstance().closeModal();
 				} else {
-					JOptionPane.showMessageDialog(null, "não é possível adicionar campos vazios", "erro",
-							JOptionPane.ERROR_MESSAGE);
+					Utils.errorMessage("não é possível adicionar campos vazios");
 				}
 			}
 		});

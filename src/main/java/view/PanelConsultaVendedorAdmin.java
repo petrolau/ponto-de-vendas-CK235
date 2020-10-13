@@ -16,6 +16,7 @@ import javax.swing.text.MaskFormatter;
 import controller.UsuarioController;
 import model.Tipo;
 import model.Usuario;
+import util.Utils;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -50,6 +51,7 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	//Reseta a tabela, e coloca os valores do banco de dados nela
 	private void resetarTabela() {
 		List<Usuario> vendedores = UsuarioController.getInstance().getVendedorList();
 		while (dfm.getRowCount() > 0) {
@@ -229,7 +231,7 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 					Usuario u = (Usuario) table.getModel().getValueAt(table.getSelectedRow(), 0);
 					ModalController.getInstance().createModal(new PanelAtualizarVendedor(u));
 				} else {
-					errorMessage("Selecione uma linha");
+					Utils.errorMessage("Selecione uma linha");
 				}
 			}
 		});
@@ -260,10 +262,10 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 						UsuarioController.getInstance().cadastrarUsuario(u);
 
 					} else {
-						errorMessage("não é possível adicionar campos vazios");
+						Utils.errorMessage("não é possível adicionar campos vazios");
 					}
 				} else {
-					errorMessage("não é possível cadastrar com os campos com valores padrão");
+					Utils.errorMessage("não é possível cadastrar com os campos com valores padrão");
 				}
 			}
 		});
@@ -297,7 +299,5 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		add(txtLogin);
 	}
 
-	public void errorMessage(String msg) {
-		JOptionPane.showMessageDialog(null, msg, "Erro", JOptionPane.ERROR_MESSAGE);
-	}
+
 }
