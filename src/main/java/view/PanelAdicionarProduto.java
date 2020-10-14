@@ -9,7 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
+import controller.ProdutoController;
+import controller.UsuarioController;
 import model.Produto;
+import model.Usuario;
+import util.Utils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -66,7 +70,23 @@ public class PanelAdicionarProduto extends JPanel {
 		
 		JButton btnNewButton = new JButton("ADICIONAR");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				String descricao = textField.getText();
+				String nome = textField_1.getText();
+				Double preco= Double.parseDouble(textField_2.getText());;
+				Integer quantidade = (int) Double.parseDouble(textField_3.getText());;
+				Produto u = new Produto();
+				if (descricao.isEmpty() || nome.isEmpty() || quantidade < 1 || preco < 1) {
+					u.setDescricao(descricao);
+					u.setNomeProduto(nome);
+					u.setPreco(preco);
+					u.setQtEmEstoque(quantidade);
+					ProdutoController.InserirProduto(u);
+					ModalController.getInstance().closeModal();
+				} else {
+					Utils.errorMessage("não é possível adicionar campos vazios");
+				}
+				
 			}
 		});
 		btnNewButton.setForeground(Color.DARK_GRAY);
