@@ -17,6 +17,7 @@ import util.Utils;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Locale;
 import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
@@ -123,8 +124,29 @@ public class PanelAtualizarProduto extends JPanel {
 				if (!(Utils.areEmpty(pnome, desc, quantidade, precoS))) {
 					p.setDescricao(desc);
 					p.setNomeProduto(pnome);
-					p.setPreco(Double.valueOf(precoS));
-					p.setQtEmEstoque(Integer.valueOf(quantidade));
+					NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+					Number precoNumber = null;
+					try {
+						precoNumber = format.parse(precoS);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						Utils.errorMessage("Erro no formato do preço");
+						ModalController.getInstance().closeModal();
+
+					}
+					p.setPreco(precoNumber.doubleValue());
+					Number qtNumber = null;
+					try {
+						qtNumber = format.parse(quantidade);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						Utils.errorMessage("Erro no formato da quantidade");
+						ModalController.getInstance().closeModal();
+
+					}
+					p.setQtEmEstoque(qtNumber.intValue());
 					ProdutoController.atualizarProduto(p);
 					ModalController.getInstance().closeModal();
 				} else {
