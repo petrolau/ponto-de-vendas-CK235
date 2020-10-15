@@ -15,12 +15,13 @@ public class Venda {
 	private Date dataVenda;
 	@OneToOne
 	private Produto vendido;
+	@Column(nullable=false)
+	private Integer qtVendido;
 	@Override
 	public String toString() {
-		return "Venda [id=" + id + ", user=" + user + ", dataVenda=" + dataVenda + ", vendido=" + vendido
-				+ ", qtVendido=" + qtVendido + "]";
+		return vendido.toString();
 	}
-	private Integer qtVendido;
+
 	
 	public Integer getId() {
 		return id;
