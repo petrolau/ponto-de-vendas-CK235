@@ -51,6 +51,7 @@ public class PanelVendasVendedor extends JPanel {
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().retornar();
 			}
 		});
 		btnVoltar.setBackground(new Color(0, 191, 255));

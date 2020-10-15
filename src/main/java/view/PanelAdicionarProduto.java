@@ -78,8 +78,8 @@ public class PanelAdicionarProduto extends JPanel {
 		JButton btnNewButton = new JButton("ADICIONAR");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String descricao = txtQuantidade.getText();
-				String nome = txtDesc.getText();
+				String descricao = txtDesc.getText();
+				String nome = txtProdNome.getText();
 				NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
 				Number precoNumber = null;
 				double preco = 0;

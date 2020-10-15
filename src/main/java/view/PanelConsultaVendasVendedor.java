@@ -16,6 +16,8 @@ import java.awt.GridLayout;
 import javax.swing.border.TitledBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelConsultaVendasVendedor extends JPanel {
 	private JTable table;
@@ -97,6 +99,11 @@ public class PanelConsultaVendasVendedor extends JPanel {
 		add(table);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.getInstance().retornar();
+			}
+		});
 		btnVoltar.setBackground(new Color(102, 206, 214));
 		btnVoltar.setBounds(337, 527, 90, 28);
 		add(btnVoltar);
