@@ -18,7 +18,9 @@ public class VendaController {
 		em.getTransaction().commit();
 		DBUtil.closeEntityManager(em);
 	}
-	public static void Vender(Venda v) {}
+	public static void Vender(List<Venda> v) {
+		
+	}
 	public static List<Venda> getVendasList(){
 		EntityManager em=DBUtil.getEntityManager();
 		TypedQuery<Venda> q=em.createQuery("FROM Venda",Venda.class);

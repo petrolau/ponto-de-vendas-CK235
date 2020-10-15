@@ -14,16 +14,19 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.NumberFormatter;
 
 import controller.ProdutoController;
 import controller.UsuarioController;
 import model.Produto;
 import model.Venda;
+import util.Utils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.event.ItemListener;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,12 +37,18 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.JFormattedTextField;
 
 public class PanelVendasVendedor extends JPanel {
 	private JTable table;
 	private JTextField textFieldInputTotal;
-	private JTextField textFieldQuantidade;
+	private JFormattedTextField textFieldQuantidade;
 	private int numeroDeVendas = 0;
+	private DefaultTableModel dfm;
 	private List<Venda> vendas = new ArrayList<Venda>();
 	private double total;
 
@@ -47,10 +56,24 @@ public class PanelVendasVendedor extends JPanel {
 	 * Create the panel.
 	 */
 	private void atualizaQuant() {
-		textFieldQuantidade.setText(Integer.toString(numeroDeVendas));
+		if (textFieldQuantidade != null)
+			textFieldQuantidade.setText(Integer.toString(numeroDeVendas));
 	}
+
+	private void limparTabela() {
+		while (dfm.getRowCount() > 0) {
+			dfm.removeRow(dfm.getRowCount() - 1);
+		}
+	}
+
 	private void atualizaTabela() {
-		
+		limparTabela();
+		total = 0;
+		for (Venda v : vendas) {
+			dfm.addRow(new Object[] { v, v.getQtVendido(), "R$ " + v.getVendido().getPreco() });
+			total += v.getQtVendido() * v.getVendido().getPreco();
+			textFieldInputTotal.setText("R$ " + Double.toString(total));
+		}
 	}
 
 	public PanelVendasVendedor() {
@@ -95,7 +118,7 @@ public class PanelVendasVendedor extends JPanel {
 			}
 		});
 		btnVoltar.setBackground(new Color(0, 191, 255));
-		btnVoltar.setBounds(157, 512, 90, 28);
+		btnVoltar.setBounds(3, 512, 90, 28);
 		add(btnVoltar);
 
 		JPanel panel = new JPanel();
@@ -126,13 +149,30 @@ public class PanelVendasVendedor extends JPanel {
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
-				new String[] { "New column", "New column", "New column" }));
+				new String[] { "New column", "New column", "New column" }) {
+			boolean[] columnEditables = new boolean[] { false, false, false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(132);
+		table.getColumnModel().getColumn(0).setMinWidth(132);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(132);
+		table.getColumnModel().getColumn(1).setMinWidth(132);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(2).setPreferredWidth(132);
+		table.getColumnModel().getColumn(2).setMinWidth(132);
 		table.setBorder(new LineBorder(new Color(128, 128, 128)));
 		table.setRowSelectionAllowed(false);
 		table.setShowGrid(false);
 		table.setShowHorizontalLines(false);
 		table.setShowVerticalLines(false);
 		table.setTableHeader(null);
+		dfm = (DefaultTableModel) table.getModel();
+		limparTabela();
 		// table.setBounds(3, 101, 396, 381);
 		// add(table);
 
@@ -140,8 +180,8 @@ public class PanelVendasVendedor extends JPanel {
 		btnMenos.setForeground(Color.WHITE);
 		btnMenos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (numeroDeVendas <= 0) {
-					numeroDeVendas = 0;
+				if (numeroDeVendas >= 1) {
+					numeroDeVendas--;
 					atualizaQuant();
 				}
 			}
@@ -156,6 +196,10 @@ public class PanelVendasVendedor extends JPanel {
 		add(btnMenos);
 
 		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnFinalizar.setForeground(Color.WHITE);
 		btnFinalizar.setBackground(new Color(0, 191, 255));
 		btnFinalizar.setBounds(610, 512, 90, 28);
@@ -168,8 +212,9 @@ public class PanelVendasVendedor extends JPanel {
 		add(lblTotal);
 
 		textFieldInputTotal = new JTextField();
-		textFieldInputTotal.setBorder(
-				new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 206, 209)));
+		textFieldInputTotal.setFont(new Font("SansSerif", Font.PLAIN, 10));
+		textFieldInputTotal.setText("R$ \r\n");
+		textFieldInputTotal.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textFieldInputTotal.setBackground(Color.WHITE);
 		textFieldInputTotal.setBounds(610, 475, 90, 20);
 		add(textFieldInputTotal);
@@ -178,15 +223,29 @@ public class PanelVendasVendedor extends JPanel {
 		JButton btnAdicionar_1 = new JButton("Adicionar");
 		btnAdicionar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Venda v = new Venda();
-				v.setQtVendido(numeroDeVendas);
 				Produto p = (Produto) comboBox.getSelectedItem();
-				double preco = p.getPreco();
-				total += numeroDeVendas * preco;
-				v.setVendido(p);
-				v.setUser(UsuarioController.getInstance().getLoggedUser());
-				v.setDataVenda(new Date());
-				vendas.add(v);
+				for (Venda v : vendas) {
+					if (v.getVendido().equals(p)) {
+						Utils.errorMessage(
+								"Não é possível adicionar o mesmo produto duas vezes, remova e readicione com a quantidade desejada");
+						return;
+					}
+				}
+				if (numeroDeVendas != 0 && numeroDeVendas <= p.getQtEmEstoque()) {
+
+					Venda v = new Venda();
+					v.setQtVendido(numeroDeVendas);
+					// double preco = p.getPreco();
+					// total += numeroDeVendas * preco;
+					v.setVendido(p);
+					v.setUser(UsuarioController.getInstance().getLoggedUser());
+					v.setDataVenda(new Date());
+					vendas.add(v);
+
+					atualizaTabela();
+				} else {
+					Utils.errorMessage("Verifique a quantidade de produtos");
+				}
 			}
 		});
 		btnAdicionar_1.setForeground(Color.WHITE);
@@ -198,7 +257,7 @@ public class PanelVendasVendedor extends JPanel {
 		btnMais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Produto p = (Produto) comboBox.getSelectedItem();
-				if (p.getQtEmEstoque() <= numeroDeVendas) {
+				if (numeroDeVendas < p.getQtEmEstoque()) {
 					numeroDeVendas++;
 					atualizaQuant();
 				} else {
@@ -212,14 +271,40 @@ public class PanelVendasVendedor extends JPanel {
 		btnMais.setBounds(713, 208, 45, 28);
 		add(btnMais);
 
-		textFieldQuantidade = new JTextField();
+		NumberFormat format = NumberFormat.getInstance();
+		NumberFormatter formatter = new NumberFormatter(format);
+		formatter.setValueClass(Integer.class);
+		formatter.setMinimum(0);
+		formatter.setMaximum(Integer.MAX_VALUE);
+		formatter.setAllowsInvalid(false);
+		formatter.setCommitsOnValidEdit(false);
+		textFieldQuantidade = new JFormattedTextField(formatter);
+		textFieldQuantidade.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+
+			}
+		});
+		textFieldQuantidade.setText("0");
+		textFieldQuantidade.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		atualizaQuant();
-		textFieldQuantidade.setBorder(
-				new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 206, 209)));
+		textFieldQuantidade.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textFieldQuantidade.setForeground(new Color(0, 0, 0));
 		textFieldQuantidade.setBounds(681, 212, 29, 20);
 		add(textFieldQuantidade);
 		textFieldQuantidade.setColumns(10);
+
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vendas.remove(table.getSelectedRow());
+				atualizaTabela();
+			}
+		});
+		btnRemover.setForeground(Color.WHITE);
+		btnRemover.setBackground(new Color(0, 191, 255));
+		btnRemover.setBounds(309, 512, 90, 28);
+		add(btnRemover);
 
 	}
 }
