@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import model.Produto;
 import model.Usuario;
 import model.Venda;
 import util.DBUtil;
@@ -18,7 +19,11 @@ public class VendaController {
 		em.getTransaction().commit();
 		DBUtil.closeEntityManager(em);
 	}
-	public static void Vender(List<Venda> v) {
+	public static void Vender(List<Venda> vendas) {
+		for(Venda v:vendas) {
+			ProdutoController.atualizaQuantEmEstoque(v.getVendido(), v.getQtVendido());
+			InserirVenda(v);
+		}
 		
 	}
 	public static List<Venda> getVendasList(){

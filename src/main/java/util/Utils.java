@@ -14,7 +14,9 @@ public class Utils {
 	public static void errorMessage(String msg) {
 		JOptionPane.showMessageDialog(null, msg, "Erro", JOptionPane.ERROR_MESSAGE);
 	}
-	
+	public static void infoMessage(String msg) {
+		JOptionPane.showMessageDialog(null, msg, "Erro", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 }
 

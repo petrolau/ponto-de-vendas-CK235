@@ -18,6 +18,7 @@ import javax.swing.text.NumberFormatter;
 
 import controller.ProdutoController;
 import controller.UsuarioController;
+import controller.VendaController;
 import model.Produto;
 import model.Venda;
 import util.Utils;
@@ -198,6 +199,13 @@ public class PanelVendasVendedor extends JPanel {
 		JButton btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(!vendas.isEmpty()) {
+					VendaController.Vender(vendas);
+					Utils.infoMessage("Produtos vendidos com sucesso");
+				}else {
+					Utils.errorMessage("não é possível vender sem produtos");
+				}
+				
 			}
 		});
 		btnFinalizar.setForeground(Color.WHITE);

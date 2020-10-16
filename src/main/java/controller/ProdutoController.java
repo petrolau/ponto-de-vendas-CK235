@@ -38,6 +38,15 @@ public class ProdutoController {
 
 	}
 
+	public static void atualizaQuantEmEstoque(Produto p, int subtrator) {
+		EntityManager em = DBUtil.getEntityManager();
+		Produto p2 = em.find(Produto.class, p.getId());
+		em.getTransaction().begin();
+		p2.setQtEmEstoque(p2.getQtEmEstoque() - subtrator);
+		em.getTransaction().commit();
+		DBUtil.closeEntityManager(em);
+	}
+
 	public static void atualizarProduto(Produto p) {
 		EntityManager em = DBUtil.getEntityManager();
 		Produto p2 = em.find(Produto.class, p.getId());
