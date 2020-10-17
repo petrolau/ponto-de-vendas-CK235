@@ -167,6 +167,7 @@ public class PanelVendasVendedor extends JPanel {
 		table.getColumnModel().getColumn(2).setPreferredWidth(132);
 		table.getColumnModel().getColumn(2).setMinWidth(132);
 		table.setBorder(new LineBorder(new Color(128, 128, 128)));
+		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
 		table.setRowSelectionAllowed(false);
 		table.setShowGrid(false);
 		table.setShowHorizontalLines(false);

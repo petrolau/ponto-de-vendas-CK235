@@ -35,7 +35,8 @@ public class VendaController {
 	}
 	public static List<Venda> getVendasListByUsuario(Usuario u){
 		EntityManager em=DBUtil.getEntityManager();
-		TypedQuery<Venda> q=em.createQuery("FROM Venda",Venda.class);
+		TypedQuery<Venda> q=em.createQuery("FROM Venda v WHERE v.user=:user",Venda.class);
+		q.setParameter("user", u);
 		List<Venda> vs=q.getResultList();
 		DBUtil.closeEntityManager(em);
 		return vs;
