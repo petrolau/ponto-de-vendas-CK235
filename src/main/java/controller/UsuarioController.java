@@ -99,7 +99,7 @@ public class UsuarioController {
 		DBUtil.closeEntityManager(em);
 		return u;
 	}
-	public List<Usuario> getVendedorList(){
+	public static List<Usuario> getVendedorList(){
 		EntityManager em=DBUtil.getEntityManager();
 		TypedQuery<Usuario> q=em.createQuery("FROM Usuario u Where u.tipo=:tipo",Usuario.class);
 		q.setParameter("tipo", Tipo.VENDEDOR);

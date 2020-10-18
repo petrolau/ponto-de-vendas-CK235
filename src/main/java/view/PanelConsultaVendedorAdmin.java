@@ -13,7 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
+import controller.ProdutoController;
 import controller.UsuarioController;
+import model.Produto;
 import model.Tipo;
 import model.Usuario;
 import util.Utils;
@@ -26,6 +28,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextField;
@@ -36,6 +39,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
@@ -48,10 +54,17 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 	private JTable table;
 	private DefaultTableModel dfm;
 
+	List<Usuario> vendedores;
 	/**
 	 * Create the panel.
 	 */
 	//Reseta a tabela, e coloca os valores do banco de dados nela
+	public void limparTabela() {
+		
+		while (dfm.getRowCount() > 0) {
+			dfm.removeRow(dfm.getRowCount() - 1);
+		}
+	}
 	private void resetarTabela() {
 		List<Usuario> vendedores = UsuarioController.getInstance().getVendedorList();
 		while (dfm.getRowCount() > 0) {
@@ -61,6 +74,16 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 			// System.out.println(vendedor);
 			dfm.addRow(new Object[] { vendedor });
 		}
+	}
+	public List<Usuario> find(String s){
+
+		List<Usuario> encontrados=new ArrayList<Usuario>();
+		for(Usuario user:vendedores) {
+			if(user.getNome().toLowerCase().contains(s.toLowerCase())) {
+				encontrados.add(user);
+			}
+		}
+		return encontrados;
 	}
 
 	public PanelConsultaVendedorAdmin() {
@@ -81,7 +104,28 @@ public class PanelConsultaVendedorAdmin extends JPanel {
 		lblFiltrarPor.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(lblFiltrarPor);
 
-		JTextField txtFiltro = new JTextField();
+		JTextField txtFiltro = new JTextField();		
+		txtFiltro.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				txtFiltro.setText("");
+				resetarTabela();
+			}
+			@Override
+			public void focusGained(FocusEvent e) {
+				vendedores = UsuarioController.getVendedorList();
+			}
+		});
+		txtFiltro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				limparTabela();
+				List<Usuario> vendedores = find(txtFiltro.getText());
+				for (Usuario p : vendedores) {
+					dfm.addRow(new Object[]  { p });
+				}
+			}
+		});
 		txtFiltro.setToolTipText("");
 		txtFiltro.setForeground(new Color(30, 144, 255));
 		txtFiltro.setBackground(Color.WHITE);
