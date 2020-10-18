@@ -10,8 +10,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import controller.ProdutoController;
+import controller.UsuarioController;
 import controller.VendaController;
+import model.Produto;
+import model.Usuario;
 import model.Venda;
+import util.Utils;
 
 import java.awt.CardLayout;
 import javax.swing.border.LineBorder;
@@ -22,13 +27,19 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class PanelConsultaVendasAdmin extends JPanel {
 	private JTable table;
 	private DefaultTableModel dfm;
+	private JComboBox<Object> comboVendedores;
+	private JComboBox<Object> comboProdutos;
+	private List<Venda> exibindo;
 
 	/**
 	 * Create the panel.
@@ -40,11 +51,68 @@ public class PanelConsultaVendasAdmin extends JPanel {
 	}
 
 	private void atualizaTabela() {
+		atualizaTabela(VendaController.getVendasList());
+	}
+
+	private void atualizaTabela(List<Venda> vendas) {
 		limparTabela();
-		List<Venda> vendas = VendaController.getVendasList();
 		for (Venda v : vendas) {
 			dfm.addRow(new Object[] { v.getUser(), v.getVendido(), v.getDataVenda(),
 					"R$ " + v.getVendido().getPreco() * v.getQtVendido() });
+		}
+		exibindo = vendas;
+
+	}
+
+	private void atualizaComboVendedores() {
+		List<Usuario> usuarios = UsuarioController.getVendedorList();
+		for (Usuario u : usuarios) {
+			comboVendedores.addItem(u);
+		}
+
+	}
+
+	private void atualizaComboProdutos() {
+		List<Produto> produtos = ProdutoController.getProdutoList();
+		for (Produto p : produtos) {
+			comboProdutos.addItem(p);
+		}
+	}
+
+	private void atualizaListaVendedores() {
+		if (comboProdutos != null && comboVendedores != null) {
+			List<Venda> vendas = VendaController.getVendasList();
+			Produto ProdSelec;
+			Usuario UserSelec;
+			if (comboProdutos.getSelectedItem() instanceof String) {
+				ProdSelec = null;
+			} else {
+				ProdSelec = (Produto) comboProdutos.getSelectedItem();
+			}
+			if (comboVendedores.getSelectedItem() instanceof String) {
+				UserSelec = null;
+			} else {
+				UserSelec = (Usuario) comboVendedores.getSelectedItem();
+			}
+			List<Venda> remover = new ArrayList<Venda>();
+			if (ProdSelec != null) {
+				for (Venda v : vendas) {
+					if (!v.getVendido().getId().equals(ProdSelec.getId())) {
+						remover.add(v);
+					}
+				}
+			}
+			vendas.removeAll(remover);
+			remover.clear();
+			if (UserSelec != null) {
+				for (Venda v : vendas) {
+					if (!v.getUser().getId().equals(UserSelec.getId())) {
+						remover.add(v);
+					}
+				}
+			}
+			vendas.removeAll(remover);
+			atualizaTabela(vendas);
 		}
 	}
 
@@ -66,12 +134,18 @@ public class PanelConsultaVendasAdmin extends JPanel {
 		lblFiltrarPor.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(lblFiltrarPor);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Vendedor" }));
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(10, 74, 206, 38);
-		add(comboBox);
+		comboVendedores = new JComboBox<Object>();
+		comboVendedores.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				atualizaListaVendedores();
+			}
+		});
+		comboVendedores.setModel(new DefaultComboBoxModel(new String[] { "Vendedor" }));
 
+		comboVendedores.setBackground(Color.WHITE);
+		comboVendedores.setBounds(10, 74, 206, 38);
+		add(comboVendedores);
+		atualizaComboVendedores();
 		table = new JTable();
 		table.setBackground(Color.WHITE);
 		table.setForeground(new Color(129, 129, 129));
@@ -146,17 +220,29 @@ public class PanelConsultaVendasAdmin extends JPanel {
 		lblPreco.setFont(new Font("Fira Code", Font.PLAIN, 18));
 		panel.add(lblPreco);
 
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "Produtos" }));
-		comboBox_1.setBackground(Color.WHITE);
-		comboBox_1.setBounds(228, 74, 206, 38);
-		add(comboBox_1);
+		comboProdutos = new JComboBox();
+		comboProdutos.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				atualizaListaVendedores();
+			}
+		});
+		comboProdutos.setModel(new DefaultComboBoxModel(new String[] { "Produtos" }));
+		comboProdutos.setBackground(Color.WHITE);
+		comboProdutos.setBounds(228, 74, 206, 38);
+		add(comboProdutos);
+		atualizaComboProdutos();
 
 		JButton btnRelatrio = new JButton("Relat\u00F3rio");
+		btnRelatrio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Utils.gerarRelatorioVendas(exibindo);
+			}
+		});
 		btnRelatrio.setForeground(Color.WHITE);
 		btnRelatrio.setBackground(new Color(102, 206, 214));
 		btnRelatrio.setBounds(570, 541, 90, 28);
 		add(btnRelatrio);
 
 	}
+
 }
