@@ -17,7 +17,10 @@ Esse sistema tem como objetivo ajudar no desempenho, progresso e manutenção no
 **Autores:**
 
 Victor Misael [Git-Hub](https://github.com/VicMisael)
+
 Cinthia Andrade [Git-Hub](https://github.com/cinthia3301andrad) 
+
 Laura Petrola [Git-Hub](https://github.com/petrolau)
+
 Daniele Carnaúba [Git-Hub](https://github.com/Danielecarn)
 
