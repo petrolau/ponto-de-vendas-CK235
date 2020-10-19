@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 import controller.UsuarioController;
 import model.Tipo;
+import util.DBUtil;
+import util.ResourceFinder;
 
 
 public class PanelController {
@@ -55,12 +57,13 @@ public class PanelController {
 	public void encerrar() {
 		frame.remove(atual);
 		frame.setVisible(false);
-		
+		DBUtil.closeEntityManagerFactory();
 		frame.dispose();
 	}
 
 	public void start() {
 		frame = new JFrame();
+		frame.setIconImage(ResourceFinder.getBookImage());
 		frame.setBounds(20,20, 768, 600);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

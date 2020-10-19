@@ -82,6 +82,7 @@ public class Login {
 	}
 	private void initialize() {
 		frmLogin = new JFrame();
+		frmLogin.setIconImage(ResourceFinder.getBookImage());
 		frmLogin.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

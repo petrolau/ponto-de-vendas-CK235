@@ -46,7 +46,7 @@ public class Utils {
 		jfc.setMultiSelectionEnabled(false);
 		jfc.showOpenDialog(null);
 		String file = jfc.getSelectedFile().getPath();
-		String path = (file + '\\' + "Relatorio_" + UsuarioController.getInstance().getLoggedUser() + ".pdf");
+		String path = (file + System.getProperty("file.separator") + "Relatorio_" + UsuarioController.getInstance().getLoggedUser() + ".pdf");
 		try {
 			PdfWriter writer = new PdfWriter(path);
 			PdfDocument pdfdoc = new PdfDocument(writer);

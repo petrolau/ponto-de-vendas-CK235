@@ -82,8 +82,8 @@ public class PanelConsultaVendasVendedor extends JPanel {
 		lblVendas.setForeground(new Color(129, 129, 129));
 		add(lblVendas);
 
-		JLabel lblFiltrarPor = new JLabel("Filtrar por:");
-		lblFiltrarPor.setBounds(10, 54, 99, 14);
+		JLabel lblFiltrarPor = new JLabel("Filtrar por produto:");
+		lblFiltrarPor.setBounds(10, 54, 206, 14);
 		lblFiltrarPor.setForeground(new Color(134, 134, 134));
 		lblFiltrarPor.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(lblFiltrarPor);
