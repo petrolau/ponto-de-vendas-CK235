@@ -7,7 +7,7 @@ Esse sistema tem como objetivo ajudar no desempenho, progresso e manutenção no
 - Dê um run no arquivo `Login.java` que está no seguinte caminho: `/src/main/java/view/Login.java`
 - E pronto! Pode aproveitar, e boas vendas!
 
-### Para saber mais informações sobre o sistema, como as telas que ele possui e suas funcionalidades, acesse o documento "Saiba mais", que se encontra na raiz no projeto
+### Para saber mais informações sobre o sistema, como as telas que ele possui e suas funcionalidades, acesse o documento "Saiba mais" que se encontra na raiz no projeto
 
 
 
