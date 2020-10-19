@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.UsuarioController;
 import controller.VendaController;
+import model.Usuario;
 import model.Venda;
 
 import java.awt.CardLayout;
@@ -22,9 +23,15 @@ import javax.swing.border.TitledBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PanelConsultaVendasVendedor extends JPanel {
 	private JTable table;
@@ -40,13 +47,28 @@ public class PanelConsultaVendasVendedor extends JPanel {
 	}
 
 	private void atualizaTabela() {
+		atualizaTabela(VendaController.getVendasListByUsuario(UsuarioController.getInstance().getLoggedUser()));
+
+	}
+
+	private void atualizaTabela(List<Venda> vendas) {
 		limparTabela();
-		List<Venda> vendas = VendaController.getVendasListByUsuario(UsuarioController.getInstance().getLoggedUser());
 		for (Venda v : vendas) {
 			dfm.addRow(new Object[] { v, v.getVendido().getDescricao(), v.getQtVendido(),
 					"R$ " + v.getVendido().getPreco() });
 
 		}
+	}
+
+	private void findUpdate(String s) {
+		List<Venda> vendas=VendaController.getVendasListByUsuario(UsuarioController.getInstance().getLoggedUser());
+		List<Venda> encontrados = new ArrayList<Venda>();
+		for (Venda v : vendas) {
+			if (v.getVendido().toString().toLowerCase().contains(s.toLowerCase())) {
+				encontrados.add(v);
+			}
+		}
+		atualizaTabela(encontrados);
 	}
 
 	public PanelConsultaVendasVendedor() {
@@ -66,10 +88,26 @@ public class PanelConsultaVendasVendedor extends JPanel {
 		lblFiltrarPor.setFont(new Font("Fira Code", Font.PLAIN, 13));
 		add(lblFiltrarPor);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(10, 74, 206, 38);
-		add(comboBox);
+		JTextField FiltrarNomeField = new JTextField();
+		FiltrarNomeField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(!FiltrarNomeField.getText().isEmpty()) {
+					findUpdate(FiltrarNomeField.getText());
+				}else {
+					atualizaTabela();
+				}
+			}
+		});
+		FiltrarNomeField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				atualizaTabela();
+			}
+		});
+		FiltrarNomeField.setBackground(Color.WHITE);
+		FiltrarNomeField.setBounds(10, 74, 206, 38);
+		add(FiltrarNomeField);
 
 		table = new JTable();
 		table.setBackground(Color.WHITE);
@@ -77,16 +115,10 @@ public class PanelConsultaVendasVendedor extends JPanel {
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Livro", "Um  Livro sobre Amor e amizade", "300", "R$ 240"},
-			},
-			new String[] {
-				"Produtos", "Descricao", "Quantidade", "Pre\u00E7o"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false
-			};
+				new Object[][] { { "Livro", "Um  Livro sobre Amor e amizade", "300", "R$ 240" }, },
+				new String[] { "Produtos", "Descricao", "Quantidade", "Pre\u00E7o" }) {
+			boolean[] columnEditables = new boolean[] { false, false, false, false };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}

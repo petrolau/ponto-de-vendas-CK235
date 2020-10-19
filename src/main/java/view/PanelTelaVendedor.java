@@ -95,7 +95,7 @@ public class PanelTelaVendedor extends JPanel {
 		btnConVendas.setBounds(38, 96, 142, 52);
 		panelButtons.add(btnConVendas);
 
-		JButton btConEstoque = new JButton("CONSULTAR DE VENDAS");
+		JButton btConEstoque = new JButton("CONSULTA DE VENDAS");
 		btConEstoque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PanelController.getInstance().trocar(new PanelConsultaVendasVendedor());
